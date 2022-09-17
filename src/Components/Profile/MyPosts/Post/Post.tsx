@@ -1,14 +1,20 @@
 import React from 'react';
 import s from './Post.module.css';
 
-export const Post = () => {
+type PostType = {
+    message: string
+    avatar?: string
+    countlike: number
+}
+
+export const Post = (props: PostType) => {
     return (
         <div className={s.item}>
             <img
-                src={'https://oir.mobi/uploads/posts/2021-04/1619183869_43-oir_mobi-p-khitraya-lisa-zhivotnie-krasivo-foto-49.jpg'}/>
-            post 1
+                src={props.avatar}/>
+            {props.message}
             <div>
-                <span>like</span>
+                <span>like {props.countlike}</span>
             </div>
 
         </div>
