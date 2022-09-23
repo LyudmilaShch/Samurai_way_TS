@@ -4,10 +4,11 @@
     padding: 20px;
   }
 
-.item{
+.item a{
     color: #f7f2ed;
+    text-decoration: none;
 }
 
-.active{
+.item a.active{
     color: #5A533C;
 }
