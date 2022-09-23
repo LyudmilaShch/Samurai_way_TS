@@ -1,14 +1,5 @@
 
-.content{
-    grid-area: c;
-    background-color: rgb(200, 189, 146);
-    border-radius: 20px;
-    margin: 20px;
-    padding: 20px;
-    color: #2d281d;
 
-
-}
 .img_forest{
     border-radius: 20px;
     width: 100%;
