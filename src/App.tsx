@@ -9,26 +9,43 @@ import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 
-function App() {
+type AppType = {
+    posts: PostsType[],
+    dialogs: DialogType[],
+    messages: MessagesType[]
+}
+
+type PostsType = {
+    id: number,
+    message: string,
+    avatar: string,
+    countlike: number
+}
+type DialogType = {
+    id: number,
+    name: string
+}
+type MessagesType = {
+    id: number,
+    message: string
+}
+
+function App(props: AppType) {
+
     return (
         <BrowserRouter>
-        <div className="app-wrapper">
-            <Header/>
-            <Navbar/>
-            <div className="app-wrapper-content">
-   {/*             <Route path={"/profile"} component={Profile}/>
-                <Route path={"/dialogs"} component={Dialogs}/>
-                <Route path={"/News"} component={News}/>
-                <Route path={"/Music"} component={Music}/>
-                <Route path={"/Settings"} component={Settings}/>*/}
-
-                <Route path={"/profile"} render={() => <Profile/>}/>
-                <Route path={"/dialogs"} render={ () => <Dialogs/>}/>
-                <Route path={"/News"} render={ () => <News/>}/>
-                <Route path={"/Music"} render={ () => <Music/>}/>
-                <Route path={"/Settings"} render={ () => <Settings/>}/>
-              </div>
-        </div>
+            <div className="app-wrapper">
+                <Header/>
+                <Navbar/>
+                <div className="app-wrapper-content">
+                    <Route path={"/profile"} render={() => <Profile posts={props.posts}/>}/>
+                    <Route path={"/dialogs"}
+                           render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
+                    <Route path={"/News"} render={() => <News/>}/>
+                    <Route path={"/Music"} render={() => <Music/>}/>
+                    <Route path={"/Settings"} render={() => <Settings/>}/>
+                </div>
+            </div>
         </BrowserRouter>
     );
 }

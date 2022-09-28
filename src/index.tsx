@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-export let dialogs = [
+let dialogs = [
     {id: 1, name: 'Rabbit'},
     {id: 2, name: 'Leo'},
     {id: 3, name: 'Mouse'},
     {id: 4, name: 'Wolf'},
     {id: 5, name: 'Mouse'},
 ]
-
-export let messages = [
+let messages = [
     {id: 1, message: 'Hi'},
     {id: 2, message: 'How is your IT'},
     {id: 3, message: 'Yo'},
@@ -19,8 +18,7 @@ export let messages = [
     {id: 5, message: 'Yo'},
     {id: 5, message: 'Bye'},
 ]
-
-export let posts = [
+let posts = [
     {
         id: 1,
         message: "Fur-fur-fur",
@@ -49,6 +47,6 @@ export let posts = [
 ]
 
 ReactDOM.render(
-    <App />,
+    <App posts={posts} dialogs={dialogs} messages={messages}/>,
   document.getElementById('root')
 );
