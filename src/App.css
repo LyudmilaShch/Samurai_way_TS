@@ -54,8 +54,18 @@
     grid-area: c;
     background-color: rgb(200, 189, 146);
     border-radius: 20px;
-    margin: 20px;
+    margin: 20px 20px 20px 0;
     padding: 20px;
     color: #2d281d;
+}
+.inactive {
+    color: #4b4c36;
+    text-decoration: none;
+}
+
+.active {
+    color: #A46C34;
+    text-decoration: none;
+    font-size: 17pt;
 }
 

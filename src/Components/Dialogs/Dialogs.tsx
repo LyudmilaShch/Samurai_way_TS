@@ -2,35 +2,31 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
+import {DialogPageType} from "../../redux/State";
 
 type DailogsType = {
-    dialogs: DialogType[]
-    messages: MessagesType[]
-}
-type DialogType = {
-    id: number,
-    name: string
-}
-type MessagesType = {
-    id: number,
-    message: string
+    state: DialogPageType
 }
 
 export const Dialogs = (props: DailogsType) => {
 
     let dialogsElements =
-        props.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
+        props.state.dialogs.map(d => <DialogItem name={d.name} avatar={d.avatar} id={d.id}/>)
 
     let messagesElements =
-        props.messages.map(m => <Message message={m.message}/>)
+        props.state.messages.map(m => <Message avatar={m.avatar} name={m.name} message={m.message}/>)
 
 
     return (
+
         <div className={s.dialogs}>
+
             <div className={s.dialogsItems}>
+                Dialogs
                 {dialogsElements}
             </div>
             <div className={s.messages}>
+                <div className={s.nameMessages}> Rabbit</div>
                 {messagesElements}
             </div>
         </div>

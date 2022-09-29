@@ -2,9 +2,19 @@
     grid-area: h;
     background-color: #5A533C;
     padding: 10px;
+    position: relative; /* 1 */
 
 }
 .header img {
     width: 70px;
-}
 
+}
+.title {
+    display: inline-block;
+    color: #a46c34;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute; /* 2 */
+    top: 50%; /* 3 */
+    transform: translate(0, -50%) /* 4 */
+}

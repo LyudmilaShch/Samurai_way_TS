@@ -4,9 +4,9 @@ import s from './Header.module.css';
 export const Header = () => {
     return (
         <header className={s.header}>
-
                 <img
-                    src='https://assets.stickpng.com/thumbs/58afdf94829958a978a4a6bd.png'/>
+                    src={"https://pngimg.com/uploads/hedgehog/small/hedgehog_PNG18.png"}/>
+            <div className={s.title}> WILDchat</div>
 
         </header>
     )}

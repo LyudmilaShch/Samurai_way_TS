@@ -1,16 +1,11 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
+import {PostsType} from "../../../redux/State";
 
 
 type NewPostsType = {
-    posts: PostsType[],
-}
-type PostsType = {
-    id: number,
-    message: string,
-    avatar: string,
-    countlike: number
+    posts: Array<PostsType>
 }
 
 export const MyPosts = (props: NewPostsType) => {
