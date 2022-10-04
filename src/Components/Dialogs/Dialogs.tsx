@@ -16,6 +16,12 @@ export const Dialogs = (props: DailogsType) => {
     let messagesElements =
         props.state.messages.map(m => <Message avatar={m.avatar} name={m.name} message={m.message}/>)
 
+    let newMessageElement = React.createRef<HTMLTextAreaElement>();
+
+    const sendMessage = () => {
+        let text = newMessageElement.current?.value;
+        alert(text)
+    }
 
     return (
 
@@ -28,6 +34,10 @@ export const Dialogs = (props: DailogsType) => {
             <div className={s.messages}>
                 <div className={s.nameMessages}> Rabbit</div>
                 {messagesElements}
+                <div>
+                    <textarea ref={newMessageElement} className={s.sendMessageArea}></textarea>
+                    <button onClick={sendMessage} className={s.sendMessageButton}>Send</button>
+                </div>
             </div>
         </div>
     )

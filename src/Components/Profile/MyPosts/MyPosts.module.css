@@ -4,5 +4,24 @@
 }
 
 .posts {
-    margin-top: 10px;
+    margin-top: 40px;
+}
+
+.addPostArea {
+    width: 95%;
+    margin: 20px 20px 5px 20px;
+    border-radius: 3px;
+    color: #4b4c36;
+    border: 1px solid #9a9c6e;
+    background-color: #c8bd92;
+}
+
+.addPostButton {
+    height: 30px;
+    background-color: #9a9c6e;
+    color: #f7f2ed;
+    border: 0px;
+    border-radius: 3px;
+    float: right;
+    margin: 0 20px 20px 0;
 }

@@ -12,28 +12,29 @@ import {RootStateType} from './redux/State';
 
 type appStateType = {
     state: RootStateType,
+    addPost: (postMessage: string) => void
 }
 
 function App(props: appStateType) {
     // @ts-ignore
     return (
-        <BrowserRouter>
-            <div className="app-wrapper">
-                <Header/>
-                <Navbar state={props.state.navbarPage}/>
-                <div className="app-wrapper-content">
-                    <Route path={"/profile"}
-                           render={() => <Profile
-                               state={props.state.profilePage}/>}/>
-                    <Route path={"/dialogs"}
-                           render={() => <Dialogs
-                               state={props.state.dialogsPage}/>}/>
-                    <Route path={"/News"} render={() => <News/>}/>
-                    <Route path={"/Music"} render={() => <Music/>}/>
-                    <Route path={"/Settings"} render={() => <Settings/>}/>
-                </div>
+        <div className="app-wrapper">
+            <Header/>
+            <Navbar state={props.state.navbarPage}/>
+            <div className="app-wrapper-content">
+                <Route path={"/profile"}
+                       render={() => <Profile
+                           state={props.state.profilePage}
+                           addPost={props.addPost}/>}/>
+                <Route path={"/dialogs"}
+                       render={() => <Dialogs
+                           state={props.state.dialogsPage}
+                       />}/>
+                <Route path={"/News"} render={() => <News/>}/>
+                <Route path={"/Music"} render={() => <Music/>}/>
+                <Route path={"/Settings"} render={() => <Settings/>}/>
             </div>
-        </BrowserRouter>
+        </div>
     );
 }
 

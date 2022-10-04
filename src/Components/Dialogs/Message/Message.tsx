@@ -1,14 +1,11 @@
 import React from 'react';
 import s from './../Dialogs.module.css';
-import {DialogPageType} from "../../../redux/State";
 
 type MessageType = {
     avatar: string,
     message: string,
     name: string
 }
-
-
 
 export const Message = (props: MessageType) => {
     let locationBlockMessage;
