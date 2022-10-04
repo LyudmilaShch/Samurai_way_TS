@@ -1,4 +1,5 @@
 import React from 'react';
+import {renderEntireTree} from "../render";
 
 export type DialogType = {
     id: number,
@@ -136,13 +137,16 @@ export let state: RootStateType = {
 }
 
 export const addPost = (postMessage: string) => {
-    debugger
+
     const newPost: PostsType = {
         id: 5,
         message: postMessage,
         avatar: "https://oir.mobi/uploads/posts/2021-04/1619183869_43-oir_mobi-p-khitraya-lisa-zhivotnie-krasivo-foto-49.jpg",
-        countlike: 17
+        countlike: 0
     };
+
+
+    renderEntireTree(state);
 
     state.profilePage.posts.push(newPost);
 

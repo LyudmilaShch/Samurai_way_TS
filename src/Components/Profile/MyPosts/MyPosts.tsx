@@ -20,10 +20,12 @@ export const MyPosts = (props: NewPostsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
-        debugger
-        if (newPostElement.current){
-        props.addPost(newPostElement.current.value);
-    }}
+
+        if (newPostElement.current) {
+            props.addPost(newPostElement.current.value);
+            newPostElement.current.value = " ";
+        }
+    }
 
     return (
         <div className={s.postsBlock}>
