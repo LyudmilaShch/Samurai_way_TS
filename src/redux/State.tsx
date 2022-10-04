@@ -141,13 +141,25 @@ export const addPost = (postMessage: string) => {
     const newPost: PostsType = {
         id: 5,
         message: postMessage,
-        avatar: "https://oir.mobi/uploads/posts/2021-04/1619183869_43-oir_mobi-p-khitraya-lisa-zhivotnie-krasivo-foto-49.jpg",
+        avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg",
         countlike: 0
     };
-
 
     renderEntireTree(state);
 
     state.profilePage.posts.push(newPost);
+
+}
+export const sendMessage = (messageText: string) => {
+
+const newMessage: MessagesType = {
+    id: 5,
+    name: "Leo",
+    message: messageText,
+    avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg",
+};
+    renderEntireTree(state);
+
+    state.dialogsPage.messages.push(newMessage);
 
 }
