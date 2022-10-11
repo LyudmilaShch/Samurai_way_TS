@@ -13,7 +13,9 @@ import {RootStateType, sendMessage} from './redux/State';
 type appStateType = {
     state: RootStateType,
     addPost: (postMessage: string) => void,
+    updateNewPostText: (newText: string) => void
     sendMessage: (MessageText: string) => void
+    updateMessageText: (newMessageText: string) => void
 }
 
 function App(props: appStateType) {
@@ -25,12 +27,15 @@ function App(props: appStateType) {
             <div className="app-wrapper-content">
                 <Route path={"/profile"}
                        render={() => <Profile
-                           state={props.state.profilePage}
-                           addPost={props.addPost}/>}/>
+                           profilePage={props.state.profilePage}
+                           addPost={props.addPost}
+                           updateNewPostText={props.updateNewPostText}
+                       />}/>
                 <Route path={"/dialogs"}
                        render={() => <Dialogs
                            state={props.state.dialogsPage}
                            sendMessage={props.sendMessage}
+                           updateMessageText={props.updateMessageText}
                        />}/>
                 <Route path={"/News"} render={() => <News/>}/>
                 <Route path={"/Music"} render={() => <Music/>}/>

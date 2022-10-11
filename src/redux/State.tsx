@@ -1,6 +1,7 @@
 import React from 'react';
 import {renderEntireTree} from "../render";
 
+
 export type DialogType = {
     id: number,
     name: string,
@@ -27,10 +28,12 @@ export type SidebarType = {
 
 export type ProfilePageType = {
     posts: Array<PostsType>
+    newPostText: string
 }
 export type DialogPageType = {
     dialogs: Array<DialogType>,
     messages: Array<MessagesType>
+    newMessageText: string
 }
 export type NavbarPageType = {
     sidebar: Array<SidebarType>
@@ -69,7 +72,8 @@ export let state: RootStateType = {
                 avatar: "https://www.kalashnikov.ru/wp-content/uploads/2021/04/natsionalnyi-park-ssha-priroda-1024x1024.jpg",
                 countlike: 12
             },
-        ]
+        ],
+        newPostText: " "
     },
     dialogsPage: {
         dialogs: [
@@ -121,6 +125,7 @@ export let state: RootStateType = {
                 avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg"
             }
         ],
+        newMessageText: " "
     },
     navbarPage: {
         sidebar: [
@@ -136,11 +141,11 @@ export let state: RootStateType = {
 
 }
 
-export const addPost = (postMessage: string) => {
+export const addPost = () => {
 
     const newPost: PostsType = {
         id: 5,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg",
         countlike: 0
     };
@@ -148,8 +153,16 @@ export const addPost = (postMessage: string) => {
     renderEntireTree(state);
 
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = " ";
 
 }
+
+export const updateNewPostText = (newText: string) => {
+state.profilePage.newPostText = newText;
+    renderEntireTree(state);
+
+}
+
 export const sendMessage = (messageText: string) => {
 
 const newMessage: MessagesType = {
@@ -161,5 +174,12 @@ const newMessage: MessagesType = {
     renderEntireTree(state);
 
     state.dialogsPage.messages.push(newMessage);
+    state.dialogsPage.newMessageText = " ";
+
+}
+
+export const updateMessageText = (newMessageText: string) => {
+    state.dialogsPage.newMessageText = newMessageText;
+    renderEntireTree(state);
 
 }
