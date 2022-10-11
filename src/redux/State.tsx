@@ -1,5 +1,8 @@
 import React from 'react';
-import {renderEntireTree} from "../render";
+
+let renderEntireTree = () => {
+    console.log('State changed');
+}
 
 
 export type DialogType = {
@@ -25,7 +28,6 @@ export type SidebarType = {
     name: string,
     avatar: string
 }
-
 export type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
@@ -38,7 +40,6 @@ export type DialogPageType = {
 export type NavbarPageType = {
     sidebar: Array<SidebarType>
 }
-
 export type RootStateType = {
     profilePage: ProfilePageType,
     dialogsPage: DialogPageType,
@@ -150,7 +151,7 @@ export const addPost = () => {
         countlike: 0
     };
 
-    renderEntireTree(state);
+    renderEntireTree();
 
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = " ";
@@ -159,7 +160,7 @@ export const addPost = () => {
 
 export const updateNewPostText = (newText: string) => {
 state.profilePage.newPostText = newText;
-    renderEntireTree(state);
+    renderEntireTree();
 
 }
 
@@ -171,7 +172,7 @@ const newMessage: MessagesType = {
     message: messageText,
     avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg",
 };
-    renderEntireTree(state);
+    renderEntireTree();
 
     state.dialogsPage.messages.push(newMessage);
     state.dialogsPage.newMessageText = " ";
@@ -180,6 +181,9 @@ const newMessage: MessagesType = {
 
 export const updateMessageText = (newMessageText: string) => {
     state.dialogsPage.newMessageText = newMessageText;
-    renderEntireTree(state);
+    renderEntireTree();
+}
 
+export const subscribe = (observer: () => void) => {
+    renderEntireTree = observer; //наблюдатель
 }
