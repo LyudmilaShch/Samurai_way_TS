@@ -47,28 +47,39 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = AddPostActionType | UpdatePostActionType | SendMessageActionType | UpdateMessageTextActionType
-type AddPostActionType = {
-    type: 'ADD-POST'
-    newPostText: string
+export type ActionsTypes =
+    ReturnType<typeof addPostActionCreator>
+    | ReturnType<typeof UpdateNewPostTextActionCreator>
+    | ReturnType<typeof SendMessageActionCreator>
+    | ReturnType<typeof UpdateMessageTextActionCreator>
 
-}
-type UpdatePostActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
 
-type SendMessageActionType = {
-    type: 'SEND-MESSAGE'
-    messageText: string
-}
-type UpdateMessageTextActionType = {
-    type: 'UPDATE-MESSAGE-TEXT'
-    newMessageText: string
-}
+export const addPostActionCreator = (newPostText: string) =>
+    ({
+        type: 'ADD-POST',
+        newPostText: newPostText
+    }) as const
+
+export const UpdateNewPostTextActionCreator = (newText: string) =>
+    ({
+        type: 'UPDATE-NEW-POST-TEXT',
+        newText: newText
+    }) as const
+
+export const SendMessageActionCreator = (messageText: string) =>
+    ({
+        type: 'SEND-MESSAGE',
+        messageText: messageText
+    }) as const
+
+export const UpdateMessageTextActionCreator = (newMessageText: string) =>
+    ({
+        type: 'UPDATE-MESSAGE-TEXT',
+        newMessageText: newMessageText
+    }) as const
 
 export const store: StoreType = {
-    _state:{
+    _state: {
         profilePage: {
             posts: [
                 {
@@ -163,11 +174,11 @@ export const store: StoreType = {
         },
 
     },
-    _callSubscriber () {
+    _callSubscriber() {
         console.log('State changed');
     },
 
-    subscribe (observer) {
+    subscribe(observer) {
         this._callSubscriber = observer; //наблюдатель
     },
     getState() {
@@ -175,7 +186,7 @@ export const store: StoreType = {
     },
 
 
-    dispatch(action: any) {
+    dispatch(action: ActionsTypes) {
 
         if (action.type === 'ADD-POST') {
             debugger
@@ -190,13 +201,11 @@ export const store: StoreType = {
             this._state.profilePage.posts.unshift(newPost);
             this._state.profilePage.newPostText = " ";
 
-        }
-        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber();
 
-        }
-        else if (action.type === 'SEND-MESSAGE') {
+        } else if (action.type === 'SEND-MESSAGE') {
             const newMessage: MessagesType = {
                 id: 5,
                 name: "Leo",
@@ -207,8 +216,7 @@ export const store: StoreType = {
 
             this._state.dialogsPage.messages.push(newMessage);
             this._state.dialogsPage.newMessageText = " ";
-        }
-        else if (action.type === 'UPDATE-MESSAGE-TEXT') {
+        } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
             this._state.dialogsPage.newMessageText = action.newMessageText;
             this._callSubscriber();
         }
