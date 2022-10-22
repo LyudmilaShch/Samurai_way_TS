@@ -8,34 +8,29 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
-import {RootStateType} from './redux/State';
+import {RootStateType, StoreType} from './redux/State';
 
-type appStateType = {
-    state: RootStateType,
-    addPost: (postMessage: string) => void,
-    updateNewPostText: (newText: string) => void
-    sendMessage: (MessageText: string) => void
-    updateMessageText: (newMessageText: string) => void
+type appStoreType = {
+    store: StoreType
 }
 
-function App(props: appStateType) {
+function App(props: appStoreType) {
+    const state = props.store.getState()
     // @ts-ignore
     return (
         <div className="app-wrapper">
             <Header/>
-            <Navbar state={props.state.navbarPage}/>
+            <Navbar state={state.navbarPage}/>
             <div className="app-wrapper-content">
                 <Route path={"/profile"}
                        render={() => <Profile
-                           profilePage={props.state.profilePage}
-                           addPost={props.addPost}
-                           updateNewPostText={props.updateNewPostText}
+                           profilePage={state.profilePage}
+                           dispatch={props.store.dispatch.bind(props.store)}
                        />}/>
                 <Route path={"/dialogs"}
                        render={() => <Dialogs
-                           state={props.state.dialogsPage}
-                           sendMessage={props.sendMessage}
-                           updateMessageText={props.updateMessageText}
+                           state={state.dialogsPage}
+                           dispatch={props.store.dispatch.bind(props.store)}
                        />}/>
                 <Route path={"/News"} render={() => <News/>}/>
                 <Route path={"/Music"} render={() => <Music/>}/>

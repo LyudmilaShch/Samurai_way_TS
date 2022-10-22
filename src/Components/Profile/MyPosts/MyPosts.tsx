@@ -7,8 +7,7 @@ import {PostsType} from "../../../redux/State";
 type NewPostsType = {
     posts: Array<PostsType>
     newPostText: string
-    addPost: (postMessage: string) => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: any) => void,
 }
 
 
@@ -21,12 +20,12 @@ export const MyPosts = (props: NewPostsType) => {
         />)
 
     const addPost = () => {
-            props.addPost(props.newPostText);
+            props.dispatch({type: 'ADD-POST', newPostText: props.newPostText});
         }
 
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-     props.updateNewPostText(e.currentTarget.value);
+     props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: e.currentTarget.value});
         }
 
     return (

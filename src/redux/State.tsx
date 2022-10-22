@@ -43,11 +43,28 @@ export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
     _callSubscriber: () => void
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
     subscribe: (observer: () => void) => void
-    sendMessage: (messageText: string) => void
-    updateMessageText:  (newMessageText: string) => void
+    dispatch: (action: ActionsTypes) => void
+}
+
+export type ActionsTypes = AddPostActionType | UpdatePostActionType | SendMessageActionType | UpdateMessageTextActionType
+type AddPostActionType = {
+    type: 'ADD-POST'
+    newPostText: string
+
+}
+type UpdatePostActionType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
+
+type SendMessageActionType = {
+    type: 'SEND-MESSAGE'
+    messageText: string
+}
+type UpdateMessageTextActionType = {
+    type: 'UPDATE-MESSAGE-TEXT'
+    newMessageText: string
 }
 
 export const store: StoreType = {
@@ -149,48 +166,52 @@ export const store: StoreType = {
     _callSubscriber () {
         console.log('State changed');
     },
-    getState() {
-        return this._state
-    },
-    addPost () {
-        const newPost: PostsType = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg",
-            countlike: 0
-        };
 
-        this._callSubscriber();
-
-        this._state.profilePage.posts.unshift(newPost);
-        this._state.profilePage.newPostText = " ";
-
-    },
-    updateNewPostText (newText: string) {
-       this._state.profilePage.newPostText = newText;
-        this._callSubscriber();
-
-    },
     subscribe (observer) {
         this._callSubscriber = observer; //наблюдатель
     },
-    sendMessage (messageText: string) {
-
-        const newMessage: MessagesType = {
-            id: 5,
-            name: "Leo",
-            message: messageText,
-            avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg",
-        };
-        this._callSubscriber();
-
-        this._state.dialogsPage.messages.push(newMessage);
-        this._state.dialogsPage.newMessageText = " ";
-
+    getState() {
+        return this._state
     },
-    updateMessageText (newMessageText: string) {
-        this._state.dialogsPage.newMessageText = newMessageText;
-        this._callSubscriber();
+
+
+    dispatch(action: any) {
+
+        if (action.type === 'ADD-POST') {
+            debugger
+            const newPost: PostsType = {
+                id: 5,
+                message: action.newPostText,
+                avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg",
+                countlike: 0
+            };
+
+            this._callSubscriber();
+            this._state.profilePage.posts.unshift(newPost);
+            this._state.profilePage.newPostText = " ";
+
+        }
+        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber();
+
+        }
+        else if (action.type === 'SEND-MESSAGE') {
+            const newMessage: MessagesType = {
+                id: 5,
+                name: "Leo",
+                message: action.messageText,
+                avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg",
+            };
+            this._callSubscriber();
+
+            this._state.dialogsPage.messages.push(newMessage);
+            this._state.dialogsPage.newMessageText = " ";
+        }
+        else if (action.type === 'UPDATE-MESSAGE-TEXT') {
+            this._state.dialogsPage.newMessageText = action.newMessageText;
+            this._callSubscriber();
+        }
     }
 
 }
