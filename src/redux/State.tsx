@@ -1,4 +1,7 @@
 import React from 'react';
+import {addPostCreator, ProfileReducer, UpdateNewPostTextCreator} from "./profile-reducer";
+import {DialogsReducer, SendMessageCreator, UpdateMessageTextCreator} from "./dialogs-reducer";
+import {NavbarReducer} from "./navbar-reducer";
 
 export type DialogType = {
     id: number,
@@ -48,35 +51,10 @@ export type StoreType = {
 }
 
 export type ActionsTypes =
-    ReturnType<typeof addPostActionCreator>
-    | ReturnType<typeof UpdateNewPostTextActionCreator>
-    | ReturnType<typeof SendMessageActionCreator>
-    | ReturnType<typeof UpdateMessageTextActionCreator>
-
-
-export const addPostActionCreator = (newPostText: string) =>
-    ({
-        type: 'ADD-POST',
-        newPostText: newPostText
-    }) as const
-
-export const UpdateNewPostTextActionCreator = (newText: string) =>
-    ({
-        type: 'UPDATE-NEW-POST-TEXT',
-        newText: newText
-    }) as const
-
-export const SendMessageActionCreator = (messageText: string) =>
-    ({
-        type: 'SEND-MESSAGE',
-        messageText: messageText
-    }) as const
-
-export const UpdateMessageTextActionCreator = (newMessageText: string) =>
-    ({
-        type: 'UPDATE-MESSAGE-TEXT',
-        newMessageText: newMessageText
-    }) as const
+    ReturnType<typeof addPostCreator>
+    | ReturnType<typeof UpdateNewPostTextCreator>
+    | ReturnType<typeof SendMessageCreator>
+    | ReturnType<typeof UpdateMessageTextCreator>
 
 export const store: StoreType = {
     _state: {
@@ -187,40 +165,10 @@ export const store: StoreType = {
 
 
     dispatch(action: ActionsTypes) {
-
-        if (action.type === 'ADD-POST') {
-            debugger
-            const newPost: PostsType = {
-                id: 5,
-                message: action.newPostText,
-                avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg",
-                countlike: 0
-            };
-
-            this._callSubscriber();
-            this._state.profilePage.posts.unshift(newPost);
-            this._state.profilePage.newPostText = " ";
-
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber();
-
-        } else if (action.type === 'SEND-MESSAGE') {
-            const newMessage: MessagesType = {
-                id: 5,
-                name: "Leo",
-                message: action.messageText,
-                avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg",
-            };
-            this._callSubscriber();
-
-            this._state.dialogsPage.messages.push(newMessage);
-            this._state.dialogsPage.newMessageText = " ";
-        } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.newMessageText;
-            this._callSubscriber();
-        }
+        this._state.profilePage = ProfileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = DialogsReducer(this._state.dialogsPage, action);
+        this._state.navbarPage = NavbarReducer(this._state.navbarPage, action);
+        this._callSubscriber();
     }
-
 }
 

@@ -4,10 +4,9 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {
     ActionsTypes,
-    DialogPageType,
-    SendMessageActionCreator,
-    UpdateMessageTextActionCreator
+    DialogPageType
 } from "../../redux/State";
+import {SendMessageCreator, UpdateMessageTextCreator} from "../../redux/dialogs-reducer";
 
 type DailogsType = {
     state: DialogPageType
@@ -23,11 +22,11 @@ export const Dialogs = (props: DailogsType) => {
         props.state.messages.map(m => <Message avatar={m.avatar} name={m.name} message={m.message}/>)
 
     const sendMessage = () => {
-            props.dispatch(SendMessageActionCreator(props.state.newMessageText));
+            props.dispatch(SendMessageCreator(props.state.newMessageText));
     }
 
     const messageOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(UpdateMessageTextActionCreator(e.currentTarget.value));
+        props.dispatch(UpdateMessageTextCreator(e.currentTarget.value));
     }
 
     return (
@@ -42,7 +41,10 @@ export const Dialogs = (props: DailogsType) => {
                 <div className={s.nameMessages}> Rabbit</div>
                 {messagesElements}
                 <div>
-                    <textarea className={s.sendMessageArea} value={props.state.newMessageText} onChange={messageOnChange}></textarea>
+                    <textarea className={s.sendMessageArea}
+                              value={props.state.newMessageText}
+                              onChange={messageOnChange}>
+                    </textarea>
                     <button onClick={sendMessage} className={s.sendMessageButton}>Send</button>
                 </div>
             </div>
