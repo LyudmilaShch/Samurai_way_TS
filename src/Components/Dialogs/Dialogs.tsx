@@ -3,10 +3,9 @@ import s from './Dialogs.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {
-    ActionsTypes,
-    DialogPageType, StoreType
+    DialogPageType
 } from "../../redux/store";
-import {SendMessageCreator, UpdateMessageTextCreator} from "../../redux/dialogs-reducer";
+
 
 type DailogsType = {
     updateNewMessageBody: (e: ChangeEvent<HTMLTextAreaElement>) => void

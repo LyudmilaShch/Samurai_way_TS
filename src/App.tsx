@@ -12,25 +12,27 @@ import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 
 
 type appStoreType = {
-    store: any
+    //store: any
 }
 
 function App(props: appStoreType) {
 
-    const state = props.store.getState()
+    //const state = props.store.getState()
     // @ts-ignore
     return (
         <div className="app-wrapper">
             <Header/>
-            <Navbar state={state.navbarPage}/>
+            <Navbar
+                //state={state.navbarPage}
+            />
             <div className="app-wrapper-content">
                 <Route path={"/profile"}
                        render={() => <Profile
-                           store={props.store}
+                           //store={props.store}
                        />}/>
                 <Route path={"/dialogs"}
                        render={() => <DialogsContainer
-                           store={props.store}
+                          //store={props.store}
                        />}/>
                 <Route path={"/News"} render={() => <News/>}/>
                 <Route path={"/Music"} render={() => <Music/>}/>
