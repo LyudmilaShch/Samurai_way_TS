@@ -3,18 +3,20 @@ import './App.css';
 import {Header} from "./Components/Header/Header";
 import {Navbar} from "./Components/Navbar/Navbar";
 import {Profile} from "./Components/Profile/Profile";
-import {Dialogs} from "./Components/Dialogs/Dialogs";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
-import {RootStateType, StoreType} from './redux/State';
+import {RootStateType, StoreType} from "./redux/store";
+import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
+
 
 type appStoreType = {
-    store: StoreType
+    store: any
 }
 
 function App(props: appStoreType) {
+
     const state = props.store.getState()
     // @ts-ignore
     return (
@@ -24,13 +26,11 @@ function App(props: appStoreType) {
             <div className="app-wrapper-content">
                 <Route path={"/profile"}
                        render={() => <Profile
-                           profilePage={state.profilePage}
-                           dispatch={props.store.dispatch.bind(props.store)}
+                           store={props.store}
                        />}/>
                 <Route path={"/dialogs"}
-                       render={() => <Dialogs
-                           state={state.dialogsPage}
-                           dispatch={props.store.dispatch.bind(props.store)}
+                       render={() => <DialogsContainer
+                           store={props.store}
                        />}/>
                 <Route path={"/News"} render={() => <News/>}/>
                 <Route path={"/Music"} render={() => <Music/>}/>

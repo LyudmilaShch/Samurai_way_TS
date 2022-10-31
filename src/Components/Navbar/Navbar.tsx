@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
 import {DialogItem} from "../Dialogs/DialogItem/DialogItem";
-import {NavbarPageType} from "../../redux/State";
+import {NavbarPageType} from "../../redux/store";
 import {Sidebar} from "./Sidebar/Sidebar";
 
 type NavbarType = {
