@@ -1,29 +1,62 @@
 import React, {ChangeEvent} from 'react';
-import {StoreType} from "../../redux/store";
-import {SendMessageCreator, UpdateMessageTextCreator} from "../../redux/dialogs-reducer";
+import {InitialStateType, SendMessageCreator, UpdateMessageTextCreator} from "../../redux/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
-import StoreContext from '../../StoreContext';
+import {connect} from "react-redux";
+import {AppStateType} from "../../redux/redux-store";
+import {Dispatch} from "redux";
 
 type DialogsContainerType = {
     //store: StoreType
 }
 
-export const DialogsContainer = () => {
+// export const DialogsContainer = () => {
+//
+//     return (
+//         <StoreContext.Consumer>
+//             {store => {
+//                 let state = store.getState().dialogsPage
+//
+//                 const sendMessage = () => {
+//                     store.dispatch(SendMessageCreator(state.newMessageText));
+//                 }
+//
+//                 const messageOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+//                     store.dispatch(UpdateMessageTextCreator(e.currentTarget.value));
+//                 }
+//                 return <Dialogs updateNewMessageBody={messageOnChange} sendMessage={sendMessage} dialogsPage={state}/>
+//             }}
+//         </StoreContext.Consumer>
+//     )
+// }
 
-    return (
-        <StoreContext.Consumer>
-            {store => {
-                let state = store.getState().dialogsPage
 
-                const sendMessage = () => {
-                    store.dispatch(SendMessageCreator(state.newMessageText));
-                }
 
-                const messageOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-                    store.dispatch(UpdateMessageTextCreator(e.currentTarget.value));
-                }
-                return <Dialogs updateNewMessageBody={messageOnChange} sendMessage={sendMessage} dialogsPage={state}/>
-            }}
-        </StoreContext.Consumer>
-    )
+type MapStatePropsType = {
+    dialogsPage: InitialStateType
 }
+
+type MapDispatchPropsType = {
+    sendMessage: () => void
+    updateNewMessageBody: (e: ChangeEvent<HTMLTextAreaElement>) => void
+}
+
+export type DialogsPropsType = MapStatePropsType & MapDispatchPropsType
+
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
+    return {
+        dialogsPage: state.dialogsPage
+    }
+}
+
+let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+
+    return {
+        sendMessage:() => {
+            dispatch(SendMessageCreator());
+        },
+        updateNewMessageBody: (e: ChangeEvent<HTMLTextAreaElement>) => {
+            dispatch(UpdateMessageTextCreator(e.currentTarget.value));
+        }
+    }
+}
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);

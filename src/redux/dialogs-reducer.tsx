@@ -1,6 +1,12 @@
-import {ActionsTypes, DialogPageType, MessagesType} from "./store";
+import {ActionsTypes, MessagesType} from "./store";
 
-let initialState = {
+export type DialogType = {
+    id: number,
+    name: string,
+    avatar: string
+}
+
+let initialState: InitialStateType  = {
     dialogs: [
         {id: 1, name: 'Rabbit', avatar: "https://www.belanta.vet/vet-blog/wp-content/uploads/2019/11/1-6.jpg"},
         {id: 2, name: 'Leo', avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg"},
@@ -53,7 +59,13 @@ let initialState = {
     newMessageText: " "
 }
 
-export const DialogsReducer = (state: DialogPageType = initialState, action: ActionsTypes) => {
+export type InitialStateType = {
+    dialogs: Array<DialogType>,
+    messages: Array<MessagesType>
+    newMessageText: string
+}
+
+export const DialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case 'SEND-MESSAGE':
             const newMessage: MessagesType = {
@@ -73,10 +85,10 @@ export const DialogsReducer = (state: DialogPageType = initialState, action: Act
     }
 }
 
-export const SendMessageCreator = (messageText: string) =>
+export const SendMessageCreator = () =>
     ({
         type: 'SEND-MESSAGE',
-        messageText: messageText
+        messageText: " "
     }) as const
 
 export const UpdateMessageTextCreator = (newMessageText: string) =>

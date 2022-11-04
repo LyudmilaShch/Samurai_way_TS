@@ -3,7 +3,7 @@ import {addPostCreator, ProfileReducer, UpdateNewPostTextCreator} from "./profil
 import {DialogsReducer, SendMessageCreator, UpdateMessageTextCreator} from "./dialogs-reducer";
 import {NavbarReducer} from "./navbar-reducer";
 
-export type DialogType = {
+type DialogType = {
     id: number,
     name: string,
     avatar: string
@@ -14,7 +14,7 @@ export type MessagesType = {
     message: string,
     avatar: string
 }
-export type PostsType = {
+type PostsType = {
     id: number,
     message: string,
     avatar: string,
@@ -25,11 +25,11 @@ export type SidebarType = {
     name: string,
     avatar: string
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
 }
-export type DialogPageType = {
+type DialogPageType = {
     dialogs: Array<DialogType>,
     messages: Array<MessagesType>
     newMessageText: string
