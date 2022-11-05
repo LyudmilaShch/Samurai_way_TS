@@ -37,7 +37,7 @@ type MapStatePropsType = {
     newPostText: string
 }
 type MapDispatchPropsType = {
-    addPost: () => void
+    addPost: (newPostText: string) => void
     updateNewPostText: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
@@ -53,8 +53,8 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
 
     return {
-        addPost: () => {
-            dispatch(addPostCreator());
+        addPost: (newPostText: string) => {
+            dispatch(addPostCreator(newPostText));
         },
         updateNewPostText: (e: ChangeEvent<HTMLTextAreaElement>) => {
             dispatch(UpdateNewPostTextCreator(e.currentTarget.value));

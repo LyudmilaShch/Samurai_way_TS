@@ -33,10 +33,11 @@ type DialogsContainerType = {
 
 type MapStatePropsType = {
     dialogsPage: InitialStateType
+    newMessageText: string
 }
 
 type MapDispatchPropsType = {
-    sendMessage: () => void
+    sendMessage: (newMessageText: string) => void
     updateNewMessageBody: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
@@ -44,15 +45,16 @@ export type DialogsPropsType = MapStatePropsType & MapDispatchPropsType
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        newMessageText: state.dialogsPage.newMessageText
     }
 }
 
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
 
     return {
-        sendMessage:() => {
-            dispatch(SendMessageCreator());
+        sendMessage:(newMessageText: string) => {
+            dispatch(SendMessageCreator(newMessageText));
         },
         updateNewMessageBody: (e: ChangeEvent<HTMLTextAreaElement>) => {
             dispatch(UpdateMessageTextCreator(e.currentTarget.value));

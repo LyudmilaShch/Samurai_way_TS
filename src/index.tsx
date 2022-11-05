@@ -10,26 +10,14 @@ import {Provider} from "react-redux";
 
 
 
-const renderEntireTree = (state: RootStateType) => {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
-            <App
-                //store={store}
-/*              state={store.getState()}
-                dispatch={store.dispatch.bind(store)}
-                updateMessageText={store.updateMessageText.bind(store)}
-                sendMessage={store.sendMessage.bind(store)}*/
-            />
+                <App/>
             </Provider>
         </BrowserRouter>,
         document.getElementById('root')
     );
-}
 
 
-renderEntireTree(store.getState());
-store.subscribe(() => {
-    let state = store.getState();
-    renderEntireTree(state);
-});
+

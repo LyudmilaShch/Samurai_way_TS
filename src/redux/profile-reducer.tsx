@@ -35,7 +35,7 @@ let initialState = {
             countlike: 12
         },
     ],
-        newPostText: " "
+    newPostText: " "
 }
 export type InitialStateType = {
     posts: Array<PostsType>
@@ -44,29 +44,36 @@ export type InitialStateType = {
 
 export const ProfileReducer = (state: InitialStateType = initialState, action: ActionsTypes) => {
     debugger;
-switch (action.type){
-    case 'ADD-POST':
-        const newPost: PostsType = {
-            id: 5,
-            message: action.newPostText,
-            avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg",
-            countlike: 0
-        };
-        state.posts.unshift(newPost);
-        state.newPostText = " ";
-        return state;
-    case 'UPDATE-NEW-POST-TEXT':
-        state.newPostText = action.newText;
-        return state;
-    default:
-        return state;
-}
+    switch (action.type) {
+        case 'ADD-POST':{
+            const newPost: PostsType = {
+                id: 5,
+                message: action.newPostText,
+                avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg",
+                countlike: 0
+            };
+            let stateCopy = {...state}
+            stateCopy.posts = [...state.posts];
+            stateCopy.posts.unshift(newPost);
+            stateCopy.newPostText = ' ';
+            return stateCopy;
+    }
+        case 'UPDATE-NEW-POST-TEXT': {
+            let stateCopy = {...state}
+            stateCopy.newPostText = action.newText;
+            return stateCopy;
+        }
+        default:
+            return state;
+
+
+    }
 }
 
-export const addPostCreator = () =>
+export const addPostCreator = (newPostText: string) =>
     ({
         type: 'ADD-POST',
-        newPostText: ""
+        newPostText: newPostText
     }) as const
 
 export const UpdateNewPostTextCreator = (newText: string) =>

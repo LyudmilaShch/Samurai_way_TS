@@ -13,7 +13,7 @@ export const MyPosts = (props: PostsPropsType) => {
         />)
 
     const addPost = () => {
-        props.addPost();
+        props.addPost(props.newPostText);
            // props.dispatch(addPostCreator(props.newPostText));
         }
 

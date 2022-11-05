@@ -16,7 +16,7 @@ export const Dialogs = (props: DialogsPropsType) => {
         state.messages.map(m => <Message avatar={m.avatar} name={m.name} message={m.message}/>)
 
     const sendMessage = () => {
-        props.sendMessage() ;
+        props.sendMessage(props.newMessageText) ;
     }
 
     const messageOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
