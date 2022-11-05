@@ -66,7 +66,7 @@ export type InitialStateType = {
 }
 
 export const DialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
-    switch (action.type) {
+        switch (action.type) {
         case 'SEND-MESSAGE': {
             const newMessage: MessagesType = {
                 id: 5,
@@ -74,17 +74,12 @@ export const DialogsReducer = (state: InitialStateType = initialState, action: A
                 message: action.messageText,
                 avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg",
             };
-            let stateCopy = {...state}
-            stateCopy.messages = [...state.messages]
-            stateCopy.messages.push(newMessage);
-            stateCopy.newMessageText = " ";
-            return stateCopy;
+            return {...state, newMessageText: " ", messages: [...state.messages, newMessage]}
+
         }
         case 'UPDATE-MESSAGE-TEXT':{
-            let stateCopy = {...state}
-            stateCopy.newMessageText = action.newMessageText;
-            return stateCopy;
-        }
+            return {...state, newMessageText: action.newMessageText};
+                   }
 
         default:
             return state;

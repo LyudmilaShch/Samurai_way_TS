@@ -43,7 +43,6 @@ export type InitialStateType = {
 }
 
 export const ProfileReducer = (state: InitialStateType = initialState, action: ActionsTypes) => {
-    debugger;
     switch (action.type) {
         case 'ADD-POST':{
             const newPost: PostsType = {
@@ -52,16 +51,10 @@ export const ProfileReducer = (state: InitialStateType = initialState, action: A
                 avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg",
                 countlike: 0
             };
-            let stateCopy = {...state}
-            stateCopy.posts = [...state.posts];
-            stateCopy.posts.unshift(newPost);
-            stateCopy.newPostText = ' ';
-            return stateCopy;
+            return {...state, posts: [newPost, ...state.posts], newPostText: ''};
     }
         case 'UPDATE-NEW-POST-TEXT': {
-            let stateCopy = {...state}
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return {...state, newPostText: action.newText};
         }
         default:
             return state;
