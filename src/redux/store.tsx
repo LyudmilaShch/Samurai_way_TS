@@ -2,6 +2,7 @@ import React from 'react';
 import {addPostCreator, ProfileReducer, UpdateNewPostTextCreator} from "./profile-reducer";
 import {DialogsReducer, SendMessageCreator, UpdateMessageTextCreator} from "./dialogs-reducer";
 import {NavbarReducer} from "./navbar-reducer";
+import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
 
 type DialogType = {
     id: number,
@@ -55,6 +56,9 @@ export type ActionsTypes =
     | ReturnType<typeof UpdateNewPostTextCreator>
     | ReturnType<typeof SendMessageCreator>
     | ReturnType<typeof UpdateMessageTextCreator>
+    | ReturnType<typeof followAC>
+    | ReturnType<typeof unfollowAC>
+    | ReturnType<typeof setUsersAC>
 
 export const store: StoreType = {
     _state: {
@@ -167,7 +171,7 @@ export const store: StoreType = {
     dispatch(action: ActionsTypes) {
         this._state.profilePage = ProfileReducer(this._state.profilePage, action);
         this._state.dialogsPage = DialogsReducer(this._state.dialogsPage, action);
-        this._state.navbarPage = NavbarReducer(this._state.navbarPage, action);
+        this._state.navbarPage = NavbarReducer(this._state.navbarPage);
         this._callSubscriber();
     }
 }

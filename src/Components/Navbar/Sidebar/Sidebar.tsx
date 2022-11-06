@@ -1,20 +1,15 @@
 import React from 'react';
 import s from "../../Dialogs/Dialogs.module.css";
+import {SidebarType} from "../../../redux/navbar-reducer";
 
-
-type SidebarType = {
-    name: string,
-    avatar: string
-    id: number
-}
 
 export const Sidebar = (props: SidebarType) => {
 
-    return <div  className={s.sidebarBlock}>
+    return <div className={s.sidebarBlock}>
         <img
             src={props.avatar}/>
-        {props.name}
-        </div>
+             {props.name}
+    </div>
 
 }
 

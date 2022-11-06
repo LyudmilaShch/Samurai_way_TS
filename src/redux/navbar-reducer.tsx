@@ -1,4 +1,12 @@
-import {ActionsTypes, NavbarPageType} from "./store";
+
+export type SidebarType = {
+    name: string,
+    avatar: string
+    id: number
+}
+export type InitialStateType = {
+    sidebar: Array<SidebarType>
+}
 
 let initialState = {
     sidebar: [
@@ -11,7 +19,7 @@ let initialState = {
         }
     ] }
 
-export const NavbarReducer = (state: NavbarPageType = initialState, action: ActionsTypes) => {
+export const NavbarReducer = (state: InitialStateType = initialState) => {
 
     return state;
 }

@@ -1,17 +1,11 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
+import {NavbarPropsType} from "./NavbarContainer";
 import {Sidebar} from "./Sidebar/Sidebar";
-import {AppStateType} from "../../redux/redux-store";
-import {connect} from "react-redux";
 
 
-type NavbarType = {
-  //  state: NavbarPageType
-}
-
-
-export const Navbar = () => {
+export const Navbar = (props: NavbarPropsType) => {
     // return (
         // <StoreContext.Consumer>
         //     {store => {
@@ -24,8 +18,12 @@ export const Navbar = () => {
                             <NavLink to={"/profile"} activeClassName={s.active}>Profile</NavLink>
                         </div>
                         <div className={s.item}>
+                            <NavLink to={"/users"} activeClassName={s.active}>Users</NavLink>
+                        </div>
+                        <div className={s.item}>
                             <NavLink to={"/dialogs"} activeClassName={s.active}>Messages</NavLink>
                         </div>
+
                         <div className={s.item}>
                             <NavLink to={"/news"} activeClassName={s.active}>News</NavLink>
                         </div>
@@ -40,6 +38,7 @@ export const Navbar = () => {
                     <div className={s.sidebar}>
                         <div className={s.friends}> Friends</div>
                         <div className={s.sidebarElements}>
+                            {props.sidebar.map(sb => <Sidebar name={sb.name} avatar={sb.avatar} id={sb.id}/> )}
                             {/*{SidebarElements}*/}
                         </div>
                     </div>
