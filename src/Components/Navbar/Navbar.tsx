@@ -10,7 +10,7 @@ export const Navbar = (props: NavbarPropsType) => {
         // <StoreContext.Consumer>
         //     {store => {
         //         let SidebarElements =
-        //             store.getState().navbarPage.sidebar.map(sb => <Sidebar name={sb.name} avatar={sb.avatar} id={sb.id}/>)
+        //             store.getState().navbarPage.sidebar.map(sb => <Sidebar name={sb.name} photos={sb.photos} id={sb.id}/>)
                     return (
                 <div>
                     <nav className={s.nav}>
