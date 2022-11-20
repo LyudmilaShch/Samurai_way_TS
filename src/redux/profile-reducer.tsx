@@ -1,5 +1,25 @@
 import {ActionsTypes} from "./store";
 
+export type ProfileType = {
+    "aboutMe": string,
+    "contacts": {
+        "facebook": string,
+        "website": string,
+        "vk": string,
+        "twitter": string,
+        "instagram": string,
+        "youtube": string,
+        "github": string,
+        "mainLink": string
+    },
+    "lookingForAJob": boolean,
+    "lookingForAJobDescription": string,
+    "fullName": string,
+    "userId": number,
+    "photos": {
+        "small": string,
+        "large": string
+}}
 
 export type PostsType = {
     id: number,
@@ -35,11 +55,13 @@ let initialState = {
             countlike: 12
         },
     ],
-    newPostText: " "
+    newPostText: " ",
+    profile:  null
 }
 export type InitialStateType = {
     posts: Array<PostsType>
     newPostText: string
+    profile: any
 }
 
 export const ProfileReducer = (state: InitialStateType = initialState, action: ActionsTypes) => {
@@ -55,6 +77,9 @@ export const ProfileReducer = (state: InitialStateType = initialState, action: A
     }
         case 'UPDATE-NEW-POST-TEXT': {
             return {...state, newPostText: action.newText};
+        }
+        case 'SET-USER-PROFILE': {
+            return {...state, profile: {...action.profile}}
         }
         default:
             return state;
@@ -73,4 +98,10 @@ export const UpdateNewPostTextCreator = (newText: string) =>
     ({
         type: 'UPDATE-NEW-POST-TEXT',
         newText: newText
+    }) as const
+
+export const setUserProfile = (profile: ProfileType) =>
+    ({
+        type: 'SET-USER-PROFILE',
+        profile: profile
     }) as const

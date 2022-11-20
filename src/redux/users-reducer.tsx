@@ -96,13 +96,13 @@ export const setCurrentPage = (currentPage: number) =>
         currentPage: currentPage
     }) as const
 
-export const setTotalUsersCount =  (totalCount: number) =>
+export const setTotalUsersCount = (totalCount: number) =>
     ({
         type: 'SET-TOTAL-USERS-COUNT',
         totalCount: totalCount
     }) as const
 
-export const toggleIsFetching =  (isFetching: boolean) =>
+export const toggleIsFetching = (isFetching: boolean) =>
     ({
         type: 'TOGGLE-IS-FETCHING',
         isFetching: isFetching

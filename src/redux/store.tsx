@@ -1,5 +1,5 @@
 import React from 'react';
-import {addPostCreator, ProfileReducer, UpdateNewPostTextCreator} from "./profile-reducer";
+import {addPostCreator, ProfileReducer, ProfileType, setUserProfile, UpdateNewPostTextCreator} from "./profile-reducer";
 import {DialogsReducer, SendMessageCreator, UpdateMessageTextCreator} from "./dialogs-reducer";
 import {NavbarReducer} from "./navbar-reducer";
 import {
@@ -36,6 +36,7 @@ export type SidebarType = {
 type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
+    profile: any
 }
 type DialogPageType = {
     dialogs: Array<DialogType>,
@@ -69,6 +70,7 @@ export type ActionsTypes =
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof setUserProfile>
 
 export const store: StoreType = {
     _state: {
@@ -99,7 +101,8 @@ export const store: StoreType = {
                     countlike: 12
                 },
             ],
-            newPostText: " "
+            newPostText: " ",
+            profile: []
         },
         dialogsPage: {
             dialogs: [
