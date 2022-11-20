@@ -2,7 +2,14 @@ import React from 'react';
 import {addPostCreator, ProfileReducer, UpdateNewPostTextCreator} from "./profile-reducer";
 import {DialogsReducer, SendMessageCreator, UpdateMessageTextCreator} from "./dialogs-reducer";
 import {NavbarReducer} from "./navbar-reducer";
-import {followAC, setCurrentPageAC, setUsersAC, setUsersTotalCountAC, unfollowAC} from "./users-reducer";
+import {
+    follow,
+    setCurrentPage,
+    setUsers,
+    setTotalUsersCount,
+    toggleIsFetching,
+    unfollow
+} from "./users-reducer";
 
 type DialogType = {
     id: number,
@@ -56,11 +63,12 @@ export type ActionsTypes =
     | ReturnType<typeof UpdateNewPostTextCreator>
     | ReturnType<typeof SendMessageCreator>
     | ReturnType<typeof UpdateMessageTextCreator>
-    | ReturnType<typeof followAC>
-    | ReturnType<typeof unfollowAC>
-    | ReturnType<typeof setUsersAC>
-    | ReturnType<typeof setCurrentPageAC>
-    | ReturnType<typeof setUsersTotalCountAC>
+    | ReturnType<typeof follow>
+    | ReturnType<typeof unfollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof toggleIsFetching>
 
 export const store: StoreType = {
     _state: {
