@@ -20,7 +20,7 @@ function App() {
             <Header/>
             <NavbarContainer />
             <div className="app-wrapper-content">
-                <Route path={"/profile"}
+                <Route path={"/profile/:userId?"}
                        render={() => <ProfileContainer
                            //store={props.store}
                        />}/>
