@@ -7,8 +7,8 @@ import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
-import { UsersContainer } from './Components/users/UsersContainer';
 import {NavbarContainer} from "./Components/Navbar/NavbarContainer";
+import UsersContainer from './Components/users/UsersContainer';
 
 
 function App() {
