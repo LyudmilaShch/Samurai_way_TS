@@ -10,6 +10,7 @@ import {
     toggleIsFetching,
     unfollow
 } from "./users-reducer";
+import {AuthReducer, setAuthUserData} from "./auth-reducer";
 
 type DialogType = {
     id: number,
@@ -33,6 +34,7 @@ export type SidebarType = {
     name: string,
     avatar: string
 }
+
 type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
@@ -71,6 +73,7 @@ export type ActionsTypes =
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setAuthUserData>
 
 export const store: StoreType = {
     _state: {
@@ -166,13 +169,11 @@ export const store: StoreType = {
                     avatar: "https://st3.depositphotos.com/4431055/12920/i/600/depositphotos_129204976-stock-photo-gray-mouse-animal-and-cheese.jpg"
                 }
             ]
+        }
         },
-
-    },
     _callSubscriber() {
         console.log('State changed');
     },
-
     subscribe(observer) {
         this._callSubscriber = observer; //наблюдатель
     },

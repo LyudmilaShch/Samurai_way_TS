@@ -9,6 +9,7 @@ import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import {NavbarContainer} from "./Components/Navbar/NavbarContainer";
 import UsersContainer from './Components/users/UsersContainer';
 import ProfileContainer from "./Components/Profile/ProfileContainer";
+import HeaderContainer from "./Components/Header/HeaderContainer";
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     // @ts-ignore
     return (
         <div className="app-wrapper">
-            <Header/>
+            <HeaderContainer />
             <NavbarContainer />
             <div className="app-wrapper-content">
                 <Route path={"/profile/:userId?"}

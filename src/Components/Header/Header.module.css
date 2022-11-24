@@ -18,3 +18,10 @@
     top: 50%; /* 3 */
     transform: translate(0, -50%) /* 4 */
 }
+
+.loginBlock {
+    float: right;
+}
+.loginBlock a {
+    color: white;
+}
