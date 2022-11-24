@@ -18,6 +18,7 @@ function App() {
     // @ts-ignore
     return (
         <div className="app-wrapper">
+
             <HeaderContainer />
             <NavbarContainer />
             <div className="app-wrapper-content">
