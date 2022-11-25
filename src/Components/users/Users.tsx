@@ -3,7 +3,7 @@ import s from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import {UsersType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
+import {followAPI} from "../../api/api";
 
 export type UsersPropsType = {
     totalUsersCount: number
@@ -50,26 +50,10 @@ export let Users = (props: UsersPropsType) => {
                             <div>
                                 {u.followed
                                     ? <button onClick={() => {
-                                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                            withCredentials: true, //мы должны быть залогиниными
-                                            headers: {"API-KEY": "ea3d9034-c1d2-4af3-a252-178ff469f42f"}
-                                        })
-                                            .then(response => {
-                                                if (response.data.resultCode == 0){
-                                                    props.unfollow(u.id)
-                                                }
-                                            });
+                                        followAPI.unfollow(props.unfollow, u.id)
                                     }}>Unfollow</button>
                                     : <button onClick={() => {
-                                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                            withCredentials: true, //мы должны быть залогиниными
-                                            headers: {"API-KEY": "ea3d9034-c1d2-4af3-a252-178ff469f42f"}
-                                        })
-                                            .then(response => {
-                                                if (response.data.resultCode == 0){
-                                                    props.follow(u.id)
-                                                }
-                                            });
+                                        followAPI.follow(props.follow, u.id)
                                     }}>Follow</button>}
                             </div>
                         </span>
