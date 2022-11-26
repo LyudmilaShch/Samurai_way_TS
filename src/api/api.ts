@@ -24,21 +24,24 @@ export const profileAPI = {
     }
 }
 export const followAPI = {
-    unfollow(unfollow: (userId: number) => void, userID: number) {
-        debugger
+    unfollow(unfollow: (userId: number) => void, userID: number, toggleInFollowingInProgress: any) {
+        toggleInFollowingInProgress(true, userID);
         instance.delete(`follow/${userID}`)
             .then(response => {
                 if (response.data.resultCode == 0) {
                     unfollow(userID)
                 }
+                toggleInFollowingInProgress(false, userID)
             });
     },
-    follow(follow: (userId: number) => void, userID: number) {
+    follow(follow: (userId: number) => void, userID: number, toggleInFollowingInProgress: any) {
+        toggleInFollowingInProgress(true, userID);
         instance.post(`follow/${userID}`)
             .then(response => {
                 if (response.data.resultCode == 0) {
                     follow(userID)
                 }
+                toggleInFollowingInProgress(false, userID)
             });
     }
 }

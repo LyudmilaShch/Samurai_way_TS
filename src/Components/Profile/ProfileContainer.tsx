@@ -6,6 +6,10 @@ import {connect} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {profileAPI} from "../../api/api";
 
+type StateType = {
+
+}
+
 type PathParamsType = {
     userId: string
 }
@@ -21,7 +25,7 @@ type MapDispatchPropsType = {
 export type ProfilePropsType = MapStatePropsType & MapDispatchPropsType
 type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
 
-class ProfileContainer extends React.Component<PropsType, any>{
+class ProfileContainer extends React.Component<PropsType, StateType>{
 
     componentDidMount() {
         let userId=this.props.match.params.userId;
