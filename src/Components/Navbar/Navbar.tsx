@@ -62,7 +62,7 @@ export const Navbar = (props: NavbarPropsType) => {
 //                         <NavLink to={"/news"} activeClassName={s.active}>News</NavLink>
 //                     </div>
 //                     <div className={s.item}>
-//                         <NavLink to={"/music"} activeClassName={s.active}>Music</NavLink>
+//                         <NavLink to={"/music"} activeClassName={s.active}>Login</NavLink>
 //                     </div>
 //                     <div className={s.item}>
 //                         <NavLink to={"/settings"} activeClassName={s.active}>Settings</NavLink>

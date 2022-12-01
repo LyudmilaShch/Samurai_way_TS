@@ -1,4 +1,3 @@
-
 export type SidebarType = {
     name: string,
     avatar: string
@@ -19,7 +18,8 @@ let initialState = {
         }
     ] }
 
-export const NavbarReducer = (state: InitialStateType = initialState) => {
 
+export const NavbarReducer = (state: InitialStateType = initialState) => {
     return state;
 }
+

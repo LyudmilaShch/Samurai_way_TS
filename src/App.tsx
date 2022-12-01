@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import {Header} from "./Components/Header/Header";
 import {Route} from "react-router-dom";
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
@@ -10,6 +9,7 @@ import {NavbarContainer} from "./Components/Navbar/NavbarContainer";
 import UsersContainer from './Components/users/UsersContainer';
 import ProfileContainer from "./Components/Profile/ProfileContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
+import {Login} from "./Components/Login/Login";
 
 
 function App() {
@@ -33,8 +33,9 @@ function App() {
                            //store={props.store}
                        />}/>
                 <Route path={"/News"} render={() => <News/>}/>
-                <Route path={"/Music"} render={() => <Music/>}/>
+                <Route path={"/Login"} render={() => <Music/>}/>
                 <Route path={"/Settings"} render={() => <Settings/>}/>
+                <Route path={"/Login"} render={() => <Login/>}/>
             </div>
         </div>
     );

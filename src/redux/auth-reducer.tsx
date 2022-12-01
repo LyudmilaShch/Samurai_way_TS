@@ -1,4 +1,5 @@
 import {ActionsTypes} from "./store";
+import {authAPI} from "../api/api";
 
 export type AuthType = {
     "login": string | null,
@@ -52,3 +53,19 @@ export const setAuthUserPhoto = (photo: string) =>
         type: 'SET-AUTH-USER-PHOTO',
         photo: photo
     }) as const
+
+export const getAuthMe = () => {
+    return (dispatch: any) => {
+        authAPI.getAuthMe()
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    let {id, email, login} = response.data.data
+                    dispatch(setAuthUserData(id, email, login))
+                    authAPI.getAuthId(id)
+                        .then(response => {
+                            dispatch(setAuthUserPhoto(response.data.photos.large))
+                        });
+                }
+            })
+    }
+}

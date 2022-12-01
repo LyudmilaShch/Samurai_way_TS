@@ -3,12 +3,11 @@ import {addPostCreator, ProfileReducer, ProfileType, setUserProfile, UpdateNewPo
 import {DialogsReducer, SendMessageCreator, UpdateMessageTextCreator} from "./dialogs-reducer";
 import {NavbarReducer} from "./navbar-reducer";
 import {
-    follow,
     setCurrentPage,
     setUsers,
     setTotalUsersCount,
     toggleIsFetching,
-    unfollow, toggleInFollowingInProgress
+    toggleInFollowingInProgress, followSuccess, unfollowSuccess
 } from "./users-reducer";
 import {setAuthUserData, setAuthUserPhoto} from "./auth-reducer";
 
@@ -66,8 +65,8 @@ export type ActionsTypes =
     | ReturnType<typeof UpdateNewPostTextCreator>
     | ReturnType<typeof SendMessageCreator>
     | ReturnType<typeof UpdateMessageTextCreator>
-    | ReturnType<typeof follow>
-    | ReturnType<typeof unfollow>
+    | ReturnType<typeof followSuccess>
+    | ReturnType<typeof unfollowSuccess>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount>
@@ -76,6 +75,7 @@ export type ActionsTypes =
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof setAuthUserPhoto>
     | ReturnType<typeof toggleInFollowingInProgress>
+
 
 export const store: StoreType = {
     _state: {

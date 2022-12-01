@@ -1,4 +1,6 @@
 import {ActionsTypes} from "./store";
+import {profileAPI, usersAPI} from "../api/api";
+import {setTotalUsersCount, setUsers, toggleIsFetching} from "./users-reducer";
 
 export type ProfileType = {
     "aboutMe": string,
@@ -105,3 +107,12 @@ export const setUserProfile = (profile: ProfileType) =>
         type: 'SET-USER-PROFILE',
         profile: profile
     }) as const
+
+export const getUserProfile = (userId: string) => {
+    return (dispatch: any) => {
+        profileAPI.getProfileUserId(userId)
+            .then(response => {
+                dispatch(setUserProfile(response.data))
+            });
+    }
+}

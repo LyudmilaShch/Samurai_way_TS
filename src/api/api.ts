@@ -13,35 +13,27 @@ export const usersAPI = {
             .then(response => {
                 return response.data
             })
+    },
+    unfollow(userID: number) {
+        return instance.delete(`follow/${userID}`)
+
+    },
+    follow(userID: number) {
+        return instance.post(`follow/${userID}`)
     }
 }
 export const profileAPI = {
-    getProfileUserId(setUserProfile: (profile: ProfileType) => void, userId: string) {
-        instance.get(`profile/` + userId)
-            .then(response => {
-                setUserProfile(response.data)
-            });
+    getProfileUserId(userId: string) {
+      return instance.get(`profile/` + userId)
+
     }
 }
-export const followAPI = {
-    unfollow(unfollow: (userId: number) => void, userID: number, toggleInFollowingInProgress: any) {
-        toggleInFollowingInProgress(true, userID);
-        instance.delete(`follow/${userID}`)
-            .then(response => {
-                if (response.data.resultCode == 0) {
-                    unfollow(userID)
-                }
-                toggleInFollowingInProgress(false, userID)
-            });
+export const authAPI = {
+    getAuthMe() {
+        return instance.get(`auth/me`)
     },
-    follow(follow: (userId: number) => void, userID: number, toggleInFollowingInProgress: any) {
-        toggleInFollowingInProgress(true, userID);
-        instance.post(`follow/${userID}`)
-            .then(response => {
-                if (response.data.resultCode == 0) {
-                    follow(userID)
-                }
-                toggleInFollowingInProgress(false, userID)
-            });
+    getAuthId(id: number) {
+        return instance.get(`profile/` + id)
     }
+
 }
