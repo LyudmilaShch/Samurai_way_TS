@@ -9,31 +9,11 @@ type DialogsContainerType = {
     //store: StoreType
 }
 
-// export const DialogsContainer = () => {
-//
-//     return (
-//         <StoreContext.Consumer>
-//             {store => {
-//                 let state = store.getState().dialogsPage
-//
-//                 const sendMessage = () => {
-//                     store.dispatch(SendMessageCreator(state.newMessageText));
-//                 }
-//
-//                 const messageOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-//                     store.dispatch(UpdateMessageTextCreator(e.currentTarget.value));
-//                 }
-//                 return <Dialogs updateNewMessageBody={messageOnChange} sendMessage={sendMessage} dialogsPage={state}/>
-//             }}
-//         </StoreContext.Consumer>
-//     )
-// }
-
-
 
 type MapStatePropsType = {
     dialogsPage: InitialStateType
     newMessageText: string
+    isAuth: boolean
 }
 
 type MapDispatchPropsType = {
@@ -46,7 +26,8 @@ export type DialogsPropsType = MapStatePropsType & MapDispatchPropsType
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         dialogsPage: state.dialogsPage,
-        newMessageText: state.dialogsPage.newMessageText
+        newMessageText: state.dialogsPage.newMessageText,
+        isAuth: state.auth.isAuth
     }
 }
 

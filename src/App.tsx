@@ -33,9 +33,10 @@ function App() {
                            //store={props.store}
                        />}/>
                 <Route path={"/News"} render={() => <News/>}/>
-                <Route path={"/Login"} render={() => <Music/>}/>
+                <Route path={"/Music"} render={() => <Music/>}/>
                 <Route path={"/Settings"} render={() => <Settings/>}/>
                 <Route path={"/Login"} render={() => <Login/>}/>
+
             </div>
         </div>
     );
