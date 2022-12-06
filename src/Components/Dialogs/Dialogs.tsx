@@ -5,9 +5,6 @@ import {Message} from "./Message/Message";
 import {DialogsPropsType} from "./DialogsContainer";
 import {Redirect} from "react-router-dom";
 
-
-
-
 export const Dialogs = (props: DialogsPropsType) => {
     let state = props.dialogsPage
     let dialogsElements =
@@ -24,7 +21,6 @@ export const Dialogs = (props: DialogsPropsType) => {
         props.updateNewMessageBody(e);
 
     }
-    if (!props.isAuth) return <Redirect to={"/Login"}/>
 
         return (
 
