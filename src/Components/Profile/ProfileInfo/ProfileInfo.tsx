@@ -3,6 +3,7 @@ import s from './ProfileInfo.module.css';
 import {ProfileType} from "../../../redux/profile-reducer";
 import {Preloader} from "../../common/preloader/Preloader";
 import userPhoto from "../../../assets/images/user.png";
+import ProfileStatus from "./ProfileStatus";
 
 type ProfileInfoType = {
     profile: ProfileType
@@ -15,10 +16,10 @@ export const ProfileInfo = (props: ProfileInfoType) => {
     } else {
         return (
             <div>
-                <div>
-                    <img className={s.img_forest}
-                         src='https://abrakadabra.fun/uploads/posts/2022-01/1643659835_9-abrakadabra-fun-p-dlinnii-fon-lesa-17.jpg'/>
-                </div>
+                {/*<div>*/}
+                {/*    <img className={s.img_forest}*/}
+                {/*         src='https://abrakadabra.fun/uploads/posts/2022-01/1643659835_9-abrakadabra-fun-p-dlinnii-fon-lesa-17.jpg'/>*/}
+                {/*</div>*/}
                 <div className={s.descriptionBlock}>
                     <div className={s.profileImg}>
                         <img className={s.img}
@@ -26,6 +27,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                     </div>
                    <div className={s.profileDescription}>
                        Name: {props.profile.fullName}
+                       <ProfileStatus status={'HELLO MY FRIENDS'}/>
                        <br/>
                        About me: {props.profile.aboutMe}
                    </div>
