@@ -1,5 +1,12 @@
 import React from 'react';
-import {addPostCreator, ProfileReducer, ProfileType, setUserProfile, UpdateNewPostTextCreator} from "./profile-reducer";
+import {
+    addPostCreator,
+    ProfileReducer,
+    ProfileType,
+    setStatus,
+    setUserProfile,
+    UpdateNewPostTextCreator
+} from "./profile-reducer";
 import {DialogsReducer, SendMessageCreator, UpdateMessageTextCreator} from "./dialogs-reducer";
 import {NavbarReducer} from "./navbar-reducer";
 import {
@@ -37,7 +44,8 @@ export type SidebarType = {
 type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
-    profile: any
+    profile: any,
+    status: string
 }
 type DialogPageType = {
     dialogs: Array<DialogType>,
@@ -51,6 +59,7 @@ export type RootStateType = {
     profilePage: ProfilePageType,
     dialogsPage: DialogPageType,
     navbarPage: NavbarPageType
+
 }
 export type StoreType = {
     _state: RootStateType
@@ -75,6 +84,7 @@ export type ActionsTypes =
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof setAuthUserPhoto>
     | ReturnType<typeof toggleInFollowingInProgress>
+    | ReturnType<typeof setStatus>
 
 
 export const store: StoreType = {
@@ -107,7 +117,8 @@ export const store: StoreType = {
                 },
             ],
             newPostText: " ",
-            profile: []
+            profile: [],
+            status: " "
         },
         dialogsPage: {
             dialogs: [
