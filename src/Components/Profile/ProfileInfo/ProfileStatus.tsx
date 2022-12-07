@@ -4,7 +4,7 @@ import s from './ProfileInfo.module.css';
 
 type ProfileStatusType = {
     status: string
-    updateStatus: any
+    updateStatus: (status: string) => void
 }
 
 class ProfileStatus extends React.Component<ProfileStatusType, any> {
@@ -19,17 +19,21 @@ class ProfileStatus extends React.Component<ProfileStatusType, any> {
         })
     }
     deactivateEditMode = () => {
-        debugger
         this.setState({
             editMode: false
         })
         this.props.updateStatus(this.state.status);
     }
     onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
-        debugger
         this.setState({
             status: e.currentTarget.value
         });
+    }
+
+    componentDidUpdate(prevProps: Readonly<ProfileStatusType>, prevState: Readonly<any>, snapshot?: any) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({status: this.props.status})
+        }
     }
 
     render() {
@@ -53,23 +57,37 @@ class ProfileStatus extends React.Component<ProfileStatusType, any> {
     }
 }
 
-export default ProfileStatus
 
-// export const ProfileStatus = (props: ProfileStatusType) => {
+// const ProfileStatus = (props: ProfileStatusType) => {
 //     const [editMode, setEditMode] = useState<boolean>(false)
-//     const changeStatusHandler = () => {
+//     const [status, setStatus] = useState<string>(props.status)
+//     const activateEditMode = () => {
 //         setEditMode(true)
 //     }
 //
+//     const deactivateEditMode = () => {
+//         setEditMode(false)
+//         // props.updateStatus(status);
+//     }
+//
+//     const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+//
+//         setStatus(e.currentTarget.value);
+//     }
 //
 //     return (
 //         <div>
-//             <div>
-//                 <span onClick={changeStatusHandler}>{props.status}</span>
-//             </div>
-//             <div>
-//                 <input value={props.status} disabled={!editMode}/>
-//             </div>
+//             {!editMode &&
+//                 <div>
+//                     <span onDoubleClick={activateEditMode}>{status}</span>
+//                 </div>
+//             }
+//             {editMode &&
+//                 <div>
+//                     <input autoFocus={true} value={status} onBlur={deactivateEditMode} onChange={onStatusChange}/>
+//                 </div>
+//             }
 //         </div>
 //     )
 // }
+export default ProfileStatus
