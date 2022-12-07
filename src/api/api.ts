@@ -1,11 +1,17 @@
 import axios from "axios";
-import {ProfileType} from "../redux/profile-reducer";
+
 
 const instance = axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {"API-KEY": "ea3d9034-c1d2-4af3-a252-178ff469f42f"}
 });
+
+export type authorizationModelType = {
+    email: string
+    password: string
+    rememberMe: boolean
+}
 
 export const usersAPI = {
     getUsers(currentPage: number = 1, pageSize: number = 10) {
@@ -24,12 +30,12 @@ export const usersAPI = {
 }
 export const profileAPI = {
     getProfileUserId(userId: string) {
-      return instance.get(`profile/` + userId)
+        return instance.get(`profile/` + userId)
     },
-    getStatus(userId: string){
+    getStatus(userId: string) {
         return instance.get(`profile/status/` + userId)
     },
-    updateStatus(status: string){
+    updateStatus(status: string) {
         return instance.put(`profile/status/`, {status: status})
     }
 }
@@ -39,6 +45,13 @@ export const authAPI = {
     },
     getAuthId(id: number) {
         return instance.get(`profile/` + id)
+    },
+    loginPost(authorizationModel: authorizationModelType) {
+        return instance.post(`auth/login`, {
+                email: authorizationModel.email,
+                password: authorizationModel.password,
+                rememberMe: authorizationModel.rememberMe
+            }
+        )
     }
-
 }

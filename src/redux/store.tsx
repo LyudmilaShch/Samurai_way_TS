@@ -17,6 +17,7 @@ import {
     toggleInFollowingInProgress, followSuccess, unfollowSuccess
 } from "./users-reducer";
 import {setAuthUserData, setAuthUserPhoto} from "./auth-reducer";
+import {setLogin} from "./login-reducer";
 
 type DialogType = {
     id: number,
@@ -85,6 +86,7 @@ export type ActionsTypes =
     | ReturnType<typeof setAuthUserPhoto>
     | ReturnType<typeof toggleInFollowingInProgress>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof setLogin>
 
 
 export const store: StoreType = {

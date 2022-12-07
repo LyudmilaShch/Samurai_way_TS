@@ -1,5 +1,7 @@
 import {ActionsTypes} from "./store";
-import {authAPI} from "../api/api";
+import {authAPI, authorizationModelType} from "../api/api";
+import {setStatus} from "./profile-reducer";
+
 
 export type AuthType = {
     "login": string | null,
@@ -53,6 +55,7 @@ export const setAuthUserPhoto = (photo: string) =>
         type: 'SET-AUTH-USER-PHOTO',
         photo: photo
     }) as const
+
 
 export const getAuthMe = () => {
     return (dispatch: any) => {
