@@ -138,7 +138,6 @@ export const getStatus = (userId: string) => {
 }
 
 export const updateStatus = (status: string) => {
-
     return (dispatch: any) => {
         profileAPI.updateStatus(status)
             .then(response => {
