@@ -55,14 +55,12 @@ let initialState: InitialStateType  = {
             message: 'Bye',
             avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg"
         }
-    ],
-    newMessageText: " "
+    ]
 }
 
 export type InitialStateType = {
     dialogs: Array<DialogType>,
     messages: Array<MessagesType>
-    newMessageText: string
 }
 
 export const DialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
@@ -74,12 +72,8 @@ export const DialogsReducer = (state: InitialStateType = initialState, action: A
                 message: action.messageText,
                 avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg",
             };
-            return {...state, newMessageText: " ", messages: [...state.messages, newMessage]}
-
+            return {...state, messages: [...state.messages, newMessage]}
         }
-        case 'UPDATE-MESSAGE-TEXT':{
-            return {...state, newMessageText: action.newMessageText};
-                   }
 
         default:
             return state;
@@ -92,8 +86,3 @@ export const SendMessageCreator = (newMessageText: string) =>
         messageText: newMessageText
     }) as const
 
-export const UpdateMessageTextCreator = (newMessageText: string) =>
-    ({
-        type: 'UPDATE-MESSAGE-TEXT',
-        newMessageText: newMessageText
-    }) as const

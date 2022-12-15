@@ -57,13 +57,11 @@ let initialState = {
             countlike: 12
         },
     ],
-    newPostText: " ",
     profile:  null,
     status: " "
 }
 export type InitialStateType = {
     posts: Array<PostsType>
-    newPostText: string
     profile: any,
     status: string
 }
@@ -79,9 +77,6 @@ export const ProfileReducer = (state: InitialStateType = initialState, action: A
             };
             return {...state, posts: [newPost, ...state.posts], newPostText: ''};
     }
-        case 'UPDATE-NEW-POST-TEXT': {
-            return {...state, newPostText: action.newText};
-        }
         case 'SET-USER-PROFILE': {
             return {...state, profile: {...action.profile}}
         }
@@ -101,11 +96,7 @@ export const addPostCreator = (newPostText: string) =>
         newPostText: newPostText
     }) as const
 
-export const UpdateNewPostTextCreator = (newText: string) =>
-    ({
-        type: 'UPDATE-NEW-POST-TEXT',
-        newText: newText
-    }) as const
+
 
 export const setUserProfile = (profile: ProfileType) =>
     ({

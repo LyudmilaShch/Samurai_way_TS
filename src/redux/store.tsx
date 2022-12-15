@@ -4,10 +4,9 @@ import {
     ProfileReducer,
     ProfileType,
     setStatus,
-    setUserProfile,
-    UpdateNewPostTextCreator
+    setUserProfile
 } from "./profile-reducer";
-import {DialogsReducer, SendMessageCreator, UpdateMessageTextCreator} from "./dialogs-reducer";
+import {DialogsReducer, SendMessageCreator} from "./dialogs-reducer";
 import {NavbarReducer} from "./navbar-reducer";
 import {
     setCurrentPage,
@@ -18,6 +17,7 @@ import {
 } from "./users-reducer";
 import {setAuthUserData, setAuthUserPhoto} from "./auth-reducer";
 import {setLogin} from "./login-reducer";
+
 
 type DialogType = {
     id: number,
@@ -72,9 +72,7 @@ export type StoreType = {
 
 export type ActionsTypes =
     ReturnType<typeof addPostCreator>
-    | ReturnType<typeof UpdateNewPostTextCreator>
     | ReturnType<typeof SendMessageCreator>
-    | ReturnType<typeof UpdateMessageTextCreator>
     | ReturnType<typeof followSuccess>
     | ReturnType<typeof unfollowSuccess>
     | ReturnType<typeof setUsers>
@@ -87,6 +85,7 @@ export type ActionsTypes =
     | ReturnType<typeof toggleInFollowingInProgress>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof setLogin>
+
 
 
 export const store: StoreType = {
@@ -198,8 +197,6 @@ export const store: StoreType = {
 
 
     dispatch(action: ActionsTypes) {
-        this._state.profilePage = ProfileReducer(this._state.profilePage, action);
-        this._state.dialogsPage = DialogsReducer(this._state.dialogsPage, action);
         this._state.navbarPage = NavbarReducer(this._state.navbarPage);
         this._callSubscriber();
     }

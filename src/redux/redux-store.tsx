@@ -10,6 +10,7 @@ import {LoginReducer} from "./login-reducer";
 
 
 
+
 let rootReducer = combineReducers({
     profilePage: ProfileReducer,
     navbarPage: NavbarReducer,
