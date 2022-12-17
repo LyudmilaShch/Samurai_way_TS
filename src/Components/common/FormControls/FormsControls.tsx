@@ -4,7 +4,6 @@ import styles from './FormsControls.module.css'
 // @ts-ignore
 const FormControl = ({input, meta, child, ...props}) => {
     const hasError = meta.touched && meta.error
-    console.log(hasError)
     return (
         <div className={styles.formControl + " " + (hasError ? styles.error : " ")}>
             <div>

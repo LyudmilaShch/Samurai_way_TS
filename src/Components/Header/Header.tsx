@@ -16,6 +16,7 @@ export const Header = (props: AuthType) => {
                         <img src={props.photo !== null ? props.photo : userPhoto}
                              className={s.userAvatar}/>
                         {props.login}
+                        <button onClick={props.loginOut}>Log out</button>
                     </div>
                     : <NavLink to={'/login'}>Login</NavLink>
                 }
