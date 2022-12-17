@@ -1,12 +1,10 @@
 import React from 'react';
 import {
     addPostCreator,
-    ProfileReducer,
-    ProfileType,
     setStatus,
     setUserProfile
 } from "./profile-reducer";
-import {DialogsReducer, SendMessageCreator} from "./dialogs-reducer";
+import {SendMessageCreator} from "./dialogs-reducer";
 import {NavbarReducer} from "./navbar-reducer";
 import {
     setCurrentPage,

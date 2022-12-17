@@ -1,6 +1,5 @@
 import {ActionsTypes} from "./store";
-import {profileAPI, usersAPI} from "../api/api";
-import {setTotalUsersCount, setUsers, toggleIsFetching} from "./users-reducer";
+import {profileAPI} from "../api/api";
 
 export type ProfileType = {
     "aboutMe": string,

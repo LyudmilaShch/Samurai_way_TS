@@ -1,5 +1,5 @@
-import React, {ChangeEvent} from 'react';
-import {addPostCreator, InitialStateType, PostsType} from "../../../redux/profile-reducer";
+import React from 'react';
+import {addPostCreator, PostsType} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
