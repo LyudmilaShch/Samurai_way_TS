@@ -1,5 +1,8 @@
 import {ActionsTypes} from "./store";
 import {authAPI, authorizationModelType} from "../api/api";
+import {stopSubmit} from "redux-form";
+import {setStatus} from "./profile-reducer";
+import {Dispatch} from "redux";
 
 
 export type AuthType = {
@@ -58,7 +61,7 @@ export const setAuthUserPhoto = (photo: string | null) =>
 
 
 export const getAuthMe = () => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch) => {
         authAPI.getAuthMe()
             .then(response => {
                 if (response.data.resultCode === 0) {
@@ -68,10 +71,12 @@ export const getAuthMe = () => {
                         .then(response => {
                             dispatch(setAuthUserPhoto(response.data.photos.large))
                         });
+                } else {
                 }
             })
     }
 }
+
 
 export const authorization = (authorizationModel: authorizationModelType) => {
     return (dispatch: any) => {
@@ -79,7 +84,10 @@ export const authorization = (authorizationModel: authorizationModelType) => {
             .then(response => {
                 if (response.data.resultCode === 0) {
                     dispatch(getAuthMe())
-                }
+                } else {
+            let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"
+            dispatch(stopSubmit("login", {_error: message}))
+        }
             })
     }
 }

@@ -7,6 +7,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {Input} from "../common/FormControls/FormsControls";
 import {required} from "../../utils/validators/validators";
 import {authorization, loginOut} from "../../redux/auth-reducer";
+import styles from '../common/FormControls/FormsControls.module.css'
 
 
 type FormDataType = {
@@ -25,6 +26,7 @@ type MapDispatchPropsType = {
 export type LoginPropsType = MapStatePropsType & MapDispatchPropsType
 
 export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+    console.log(props)
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -36,6 +38,9 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             <div>
                 <Field  component={Input} name={"rememberMe"} type={"checkbox"}/>remember me
             </div>
+            {props.error && <div className={styles.formSummaryError}>
+                {props.error}
+            </div>}
             <div>
                 <button>login</button>
             </div>
