@@ -1,7 +1,6 @@
 import {ActionsTypes} from "./store";
 import {authAPI, authorizationModelType} from "../api/api";
 import {stopSubmit} from "redux-form";
-import {setStatus} from "./profile-reducer";
 import {Dispatch} from "redux";
 
 
@@ -60,21 +59,18 @@ export const setAuthUserPhoto = (photo: string | null) =>
     }) as const
 
 
-export const getAuthMe = () => {
-    return (dispatch: Dispatch) => {
-        authAPI.getAuthMe()
+export const getAuthMe = () => (dispatch: Dispatch) => {
+       return authAPI.getAuthMe()
             .then(response => {
                 if (response.data.resultCode === 0) {
                     let {id, email, login} = response.data.data
                     dispatch(setAuthUserData(id, email, login, true))
-                    authAPI.getAuthId(id)
-                        .then(response => {
-                            dispatch(setAuthUserPhoto(response.data.photos.large))
-                        });
-                } else {
+                    // authAPI.getAuthId(id)
+                    //     .then(response => {
+                    //         dispatch(setAuthUserPhoto(response.data.photos.large))
+                    //     });
                 }
             })
-    }
 }
 
 

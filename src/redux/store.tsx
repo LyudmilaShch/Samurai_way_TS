@@ -14,6 +14,7 @@ import {
     toggleInFollowingInProgress, followSuccess, unfollowSuccess
 } from "./users-reducer";
 import {setAuthUserData, setAuthUserPhoto} from "./auth-reducer";
+import {initializedSuccess} from "./app-reducer";
 
 
 
@@ -82,6 +83,7 @@ export type ActionsTypes =
     | ReturnType<typeof setAuthUserPhoto>
     | ReturnType<typeof toggleInFollowingInProgress>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof initializedSuccess>
 
 
 

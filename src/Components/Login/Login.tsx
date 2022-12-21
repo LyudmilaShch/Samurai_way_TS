@@ -26,7 +26,6 @@ type MapDispatchPropsType = {
 export type LoginPropsType = MapStatePropsType & MapDispatchPropsType
 
 export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
-    console.log(props)
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -58,7 +57,6 @@ const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) =>{
         props.authorization(formData)
     }
-    console.log(props.isAuth)
     if (props.isAuth){
         return  <Redirect to={"/profile"}/>
     }
