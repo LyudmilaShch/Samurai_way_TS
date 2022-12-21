@@ -15,9 +15,6 @@ import {
 } from "./users-reducer";
 import {setAuthUserData, setAuthUserPhoto} from "./auth-reducer";
 import {initializedSuccess} from "./app-reducer";
-
-
-
 type DialogType = {
     id: number,
     name: string,
@@ -40,7 +37,6 @@ export type SidebarType = {
     name: string,
     avatar: string
 }
-
 type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
