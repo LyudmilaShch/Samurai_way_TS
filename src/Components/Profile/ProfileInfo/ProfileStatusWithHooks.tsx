@@ -12,6 +12,11 @@ const ProfileStatusWithHooks = (props: ProfileStatusType) => {
 
     const [editMode, setEditMode] = useState<boolean>(false)
     const [status, setStatus] = useState<string>(props.status)
+
+    useEffect(() => {
+        setStatus(props.status)
+    },[props.status]);
+
     const activateEditMode = () => {
         setEditMode(true)
     };
@@ -26,9 +31,7 @@ const ProfileStatusWithHooks = (props: ProfileStatusType) => {
         setStatus(e.currentTarget.value);
     }
 
-    useEffect(() => {
-        //dispatch(getStatus())
-    }, []);
+
 
     return (
         <div>
