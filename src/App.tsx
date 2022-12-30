@@ -4,7 +4,6 @@ import {Route, withRouter} from "react-router-dom";
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
-
 import {NavbarContainer} from "./Components/Navbar/NavbarContainer";
 import UsersContainer from './Components/users/UsersContainer';
 import ProfileContainer from "./Components/Profile/ProfileContainer";
