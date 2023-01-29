@@ -20,7 +20,8 @@ export type ProfileType = {
     "photos": {
         "small": string,
         "large": string
-}}
+    }
+}
 
 export type PostsType = {
     id: number,
@@ -56,7 +57,7 @@ let initialState = {
             countlike: 12
         },
     ],
-    profile:  null,
+    profile: null,
     status: " "
 }
 export type InitialStateType = {
@@ -67,7 +68,7 @@ export type InitialStateType = {
 
 export const ProfileReducer = (state: InitialStateType = initialState, action: ActionsTypes) => {
     switch (action.type) {
-        case 'ADD-POST':{
+        case 'ADD-POST': {
             const newPost: PostsType = {
                 id: 5,
                 message: action.newPostText,
@@ -75,7 +76,10 @@ export const ProfileReducer = (state: InitialStateType = initialState, action: A
                 countlike: 0
             };
             return {...state, posts: [newPost, ...state.posts], newPostText: ''};
-    }
+        }
+        case 'DELETE-POST': {
+            return {...state, posts: state.posts.filter(p => p.id !== action.postId )}
+        }
         case 'SET-USER-PROFILE': {
             return {...state, profile: {...action.profile}}
         }
@@ -95,6 +99,11 @@ export const addPostCreator = (newPostText: string) =>
         newPostText: newPostText
     }) as const
 
+export const deletePostCreator = (postId: number) =>
+    ({
+        type: 'DELETE-POST',
+        postId
+    }) as const
 
 
 export const setUserProfile = (profile: ProfileType) =>
@@ -131,7 +140,7 @@ export const updateStatus = (status: string) => {
     return (dispatch: any) => {
         profileAPI.updateStatus(status)
             .then(response => {
-                if (response.data.resultCode === 0){
+                if (response.data.resultCode === 0) {
                     dispatch(setStatus(status))
                 }
             });

@@ -10,7 +10,8 @@ type PostDataType = {
     newPostText: string
 }
 
-export const MyPosts = (props: PostsPropsType) => {
+export const MyPosts = React.memo((props: PostsPropsType) => {
+    console.log('RENDER')
 
     let postsElements =
         props.posts.map(p => <Post message={p.message}
@@ -34,7 +35,7 @@ export const MyPosts = (props: PostsPropsType) => {
             </div>
         </div>
     )
-}
+})
 
 const maxLength10 = maxLengthCreator(10)
 

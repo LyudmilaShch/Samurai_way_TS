@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    addPostCreator,
+    addPostCreator, deletePostCreator,
     setStatus,
     setUserProfile
 } from "./profile-reducer";
@@ -67,6 +67,7 @@ export type StoreType = {
 
 export type ActionsTypes =
     ReturnType<typeof addPostCreator>
+    | ReturnType<typeof deletePostCreator>
     | ReturnType<typeof SendMessageCreator>
     | ReturnType<typeof followSuccess>
     | ReturnType<typeof unfollowSuccess>
