@@ -56,7 +56,6 @@ export const authAPI = {
         return instance.get(`profile/` + id)
     },
     loginPost(authorizationModel: authorizationModelType) {
-        console.log(authorizationModel)
         return instance.post(`auth/login`, {
                 email: authorizationModel.email,
                 password: authorizationModel.password,

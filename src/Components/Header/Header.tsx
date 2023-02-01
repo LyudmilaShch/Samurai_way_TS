@@ -13,7 +13,7 @@ export const Header = (props: AuthType) => {
             <div className={s.loginBlock}>
                 {props.isAuth
                     ? <div>
-                        <img src={props.photo !== null ? props.photo : userPhoto}
+                        <img src={props.profile?.photos.large !== null ? props.profile?.photos.large : userPhoto}
                              className={s.userAvatar}/>
                         {props.login}
                         <button onClick={props.loginOut}>Log out</button>

@@ -2,6 +2,7 @@ import {ActionsTypes} from "./store";
 import {authAPI, authorizationModelType} from "../api/api";
 import {stopSubmit} from "redux-form";
 import {Dispatch} from "redux";
+import {ProfileType} from "./profile-reducer";
 
 
 export type AuthType = {
@@ -9,6 +10,8 @@ export type AuthType = {
     isAuth: boolean,
     photo: string | null
     loginOut: () => void
+
+    profile?: ProfileType
 }
 
 let initialState = {
