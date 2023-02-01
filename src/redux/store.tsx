@@ -82,9 +82,6 @@ export type ActionsTypes =
     | ReturnType<typeof setStatus>
     | ReturnType<typeof initializedSuccess>
 
-
-
-
 export const store: StoreType = {
     _state: {
         profilePage: {

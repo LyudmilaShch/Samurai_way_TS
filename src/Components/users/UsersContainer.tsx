@@ -51,7 +51,6 @@ class UserContainer extends React.Component<UsersPropsType, StateType> {
         this.props.setCurrentPage(pageNumber);
         this.props.requestUsers(pageNumber, this.props.pageSize);
     }
-
     render() {
         return <>
             {this.props.isFetching ? <Preloader/> : null}
@@ -71,18 +70,6 @@ class UserContainer extends React.Component<UsersPropsType, StateType> {
     }
 }
 
-
-// let mapStateToProps = (state: AppStateType): MapStatePropsType => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress
-//     }
-// }
-
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         users: getUsers(state),
@@ -95,7 +82,6 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 }
 
 export default compose<React.ComponentType>(
-    //withAuthRedirect,
     connect(mapStateToProps, {
     follow, unfollow,
     setCurrentPage,
