@@ -29,8 +29,8 @@ export let Users = ({
                     }: UsersPropsType) => {
 
     return <div>
-        <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage}
-                   onPageChanged={onPageChanged}/>
+        <Paginator totalItemsCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage}
+                   onPageChanged={onPageChanged} portionSize={10}/>
         <div>
             {
                 users.map(u =>
