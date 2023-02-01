@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    addPostCreator, deletePostCreator,
+    addPostCreator, deletePostCreator, savePhotoSuccess,
     setStatus,
     setUserProfile
 } from "./profile-reducer";
@@ -80,6 +80,7 @@ export type ActionsTypes =
     | ReturnType<typeof setAuthUserPhoto>
     | ReturnType<typeof toggleInFollowingInProgress>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof savePhotoSuccess>
     | ReturnType<typeof initializedSuccess>
 
 export const store: StoreType = {
