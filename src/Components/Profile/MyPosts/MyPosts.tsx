@@ -11,12 +11,11 @@ type PostDataType = {
 }
 
 export const MyPosts = React.memo((props: PostsPropsType) => {
-    console.log('RENDER')
-
     let postsElements =
-        props.posts.map(p => <Post message={p.message}
-                                   avatar={p.avatar}
-                                   countlike={p.countlike}
+        props.posts.map(p => <Post
+            key={p.id} message={p.message}
+            avatar={p.avatar}
+            countlike={p.countlike}
         />)
 
     let addNewPost = (values: PostDataType) => {

@@ -1,5 +1,6 @@
 import {ActionsTypes} from "./store";
 import {profileAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 export type ProfileType = {
     "aboutMe": string,
@@ -145,5 +146,17 @@ export const savePhoto = (file: File) => async (dispatch: any) => {
     let response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos))
+    }
+}
+export const saveProfile = (profile: ProfileType) => async (dispatch: any, getState: any) => {
+    const userId = getState().auth.data.userid
+    console.log(userId)
+    let response = await profileAPI.saveProfile(profile)
+    if (response.data.resultCode === 0) {
+        dispatch(getUserProfile(userId))
+    } else {
+        let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"
+        dispatch(stopSubmit("edit-profile", {_error: message}))
+        return Promise.reject()
     }
 }

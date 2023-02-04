@@ -9,3 +9,6 @@ color: #645b5c;
 .descriptionBlock{
 display: flex;
 }
+.contact{
+    padding-left: 10px;
+}
