@@ -12,6 +12,7 @@ export type authorizationModelType = {
     email: string
     password: string
     rememberMe: boolean
+    captcha: string | null
 }
 
 export const usersAPI = {
@@ -48,7 +49,7 @@ export const profileAPI = {
             }
         })
     },
-    saveProfile(profile: ProfileType){
+    saveProfile(profile: ProfileType) {
         return instance.put('/profile', profile)
     }
 }
@@ -63,11 +64,18 @@ export const authAPI = {
         return instance.post(`auth/login`, {
                 email: authorizationModel.email,
                 password: authorizationModel.password,
-                rememberMe: authorizationModel.rememberMe
+                rememberMe: authorizationModel.rememberMe,
+                captcha: authorizationModel.captcha
             }
         )
     },
     loginOut() {
         return instance.delete(`auth/login`)
+    }
+}
+
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get(`security/get-captcha-url`)
     }
 }

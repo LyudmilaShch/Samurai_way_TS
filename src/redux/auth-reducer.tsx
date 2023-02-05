@@ -1,5 +1,5 @@
 import {ActionsTypes} from "./store";
-import {authAPI, authorizationModelType} from "../api/api";
+import {authAPI, authorizationModelType, securityAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 import {Dispatch} from "redux";
 import {ProfileType} from "./profile-reducer";
@@ -21,7 +21,8 @@ let initialState = {
         login: null,
         isAuth: false,
     },
-    photo: null
+    photo: null,
+    captchaUrl: null
 }
 
 export type InitialStateType = {
@@ -32,6 +33,7 @@ export type InitialStateType = {
         isAuth: boolean
     },
     photo: string | null
+    captchaUrl: string | null
 }
 
 export const AuthReducer = (state: InitialStateType = initialState, action: ActionsTypes) => {
@@ -42,7 +44,8 @@ export const AuthReducer = (state: InitialStateType = initialState, action: Acti
             }
         case 'auth/SET-AUTH-USER-PHOTO':
             return {...state, photo: action.photo}
-
+        case 'auth/GET-CAPTCHA-URL-SUCCESS':
+            return {...state, ...action.payload}
         default:
             return state;
     }
@@ -60,6 +63,11 @@ export const setAuthUserPhoto = (photo: string | null) =>
         photo: photo
     }) as const
 
+export const getCaptchaUrlSuccess = (captchaUrl: string | null) =>
+    ({
+        type: 'auth/GET-CAPTCHA-URL-SUCCESS',
+        payload: {captchaUrl}
+    }) as const
 
 export const getAuthMe = () => async (dispatch: Dispatch) => {
     let response = await authAPI.getAuthMe()
@@ -75,6 +83,9 @@ export const authorization = (authorizationModel: authorizationModelType) => asy
     if (response.data.resultCode === 0) {
         dispatch(getAuthMe())
     } else {
+        if (response.data.resultCode === 10){
+            dispatch(getCaptchaUrl())
+        }
         let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"
         dispatch(stopSubmit("login", {_error: message}))
     }
@@ -86,4 +97,10 @@ export const loginOut = () => async (dispatch: any) => {
         dispatch(setAuthUserData(null, null, null, false))
         dispatch(setAuthUserPhoto(null))
     }
+}
+
+export const getCaptchaUrl = () => async (dispatch: any) => {
+    let response = await securityAPI.getCaptchaUrl()
+    const captchaUrl = response.data.url
+    dispatch(getCaptchaUrlSuccess(captchaUrl))
 }

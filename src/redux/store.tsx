@@ -13,7 +13,7 @@ import {
     toggleIsFetching,
     toggleInFollowingInProgress, followSuccess, unfollowSuccess
 } from "./users-reducer";
-import {setAuthUserData, setAuthUserPhoto} from "./auth-reducer";
+import {getCaptchaUrl, getCaptchaUrlSuccess, setAuthUserData, setAuthUserPhoto} from "./auth-reducer";
 import {initializedSuccess} from "./app-reducer";
 type DialogType = {
     id: number,
@@ -78,6 +78,7 @@ export type ActionsTypes =
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof setAuthUserPhoto>
+    | ReturnType<typeof getCaptchaUrlSuccess>
     | ReturnType<typeof toggleInFollowingInProgress>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof savePhotoSuccess>
