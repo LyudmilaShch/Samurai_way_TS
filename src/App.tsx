@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import './App.css';
-import {BrowserRouter, HashRouter, Route, withRouter} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
@@ -27,9 +27,15 @@ export type AppPropsType = MapStatePropsType & MapDispatchPropsType
 
 
 class App extends React.Component<AppPropsType, any> {
-
+    catchAllUnhandledErrors = (promiseRejectionEvent: any) => {
+        alert("Some error occured")
+    }
     componentDidMount() {
         this.props.initializeApp()
+        window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors)
+    }
+    componentWillUnmount() {
+        window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors)
     }
 
     render() {
@@ -42,7 +48,8 @@ class App extends React.Component<AppPropsType, any> {
                 <NavbarContainer/>
                 <div className="app-wrapper-content">
                     <Suspense fallback={<div><Preloader/></div>}>
-                        <section>
+                        <Switch>
+                            <Route exact path={"/"} render={() => <Redirect to="/profile" />}/>
                             <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
                             <Route path={"/users"} render={() => <UsersContainer/>}/>
                             <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
@@ -50,32 +57,33 @@ class App extends React.Component<AppPropsType, any> {
                             <Route path={"/Music"} render={() => <Music/>}/>
                             <Route path={"/Settings"} render={() => <Settings/>}/>
                             <Route path={"/Login"} render={() => <Login/>}/>
-                        </section>
+                            <Route path={"*"} render={() => <div>404 NOT FOUND</div>}/>
+                        </Switch>
                     </Suspense>
                 </div>
             </div>
-        );
+    );
     }
-}
+    }
 
-// export default App;
-const mapStateToProps = (state: AppStateType): MapStatePropsType => {
-    return {
-        initialized: state.app.initialized
-    }
-};
-let AppContainer = compose
-    < React.ComponentType > (
-        withRouter,
+    // export default App;
+    const mapStateToProps = (state: AppStateType): MapStatePropsType => {
+        return {
+            initialized: state.app.initialized
+        }
+    };
+    let AppContainer = compose
+        < React.ComponentType> (
+            withRouter,
             connect(mapStateToProps, {initializeApp}))(App);
 
-let SamuraiJsApp = () => {
-    return (
-        <HashRouter>
-            <Provider store={store}>
+            let SamuraiJsApp = () => {
+                return (
+                <BrowserRouter>
+                <Provider store={store}>
                 <AppContainer/>
-            </Provider>
-        </HashRouter>
-    )
-}
-export default SamuraiJsApp
+                </Provider>
+                </BrowserRouter>
+                )
+            }
+            export default SamuraiJsApp
