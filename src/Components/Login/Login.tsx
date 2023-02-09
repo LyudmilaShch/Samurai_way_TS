@@ -8,7 +8,8 @@ import {Input} from "../common/FormControls/FormsControls";
 import {required} from "../../utils/validators/validators";
 import {authorization, loginOut} from "../../redux/auth-reducer";
 import styles from '../common/FormControls/FormsControls.module.css'
-import {ProfileType} from "../../redux/profile-reducer";
+import s from './Login.module.scss'
+import imgForLogin from '../../assets/images/imgForLogin.jpg'
 
 type FormDataType = {
     email: string
@@ -31,26 +32,34 @@ type MapDispatchPropsType = {
 }
 export type LoginPropsType = MapStatePropsType & MapDispatchPropsType
 
-export const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormProps> & LoginFormProps> = ({handleSubmit, error, captchaUrl}) => {
+export const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormProps> & LoginFormProps> = ({
+                                                                                                          handleSubmit,
+                                                                                                          error,
+                                                                                                          captchaUrl
+                                                                                                      }) => {
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <Field placeholder={"Login"} name={"email"} component={Input} validate={[required]}/>
+        <form onSubmit={handleSubmit} className={s.loginForm}>
+            <div >
+                <p>Email Address</p>
+                <Field placeholder={"Login"} name={"email"} component={Input} validate={[required]} className={s.field}/>
             </div>
             <div>
-                <Field placeholder={"Password"} name={"password"} component={Input} validate={[required]}
+                <p>Your Password</p>
+                <Field placeholder={"Password"} name={"password"} component={Input} validate={[required]} className={s.field}
                        type={"password"}/>
             </div>
-            <div>
-                <Field component={Input} name={"rememberMe"} type={"checkbox"}/>remember me
+            <div className={s.rememberMe}>
+                <Field component={Input} name={"rememberMe"} type={"checkbox"} className={s.input}/>
+                <p>Remember me</p>
             </div>
             {captchaUrl && <img src={captchaUrl}/>}
-            {captchaUrl && <Field placeholder={"Symbols from image"} name={"captcha"} component={Input} validate={[required]}/>}
+            {captchaUrl &&
+                <Field placeholder={"Symbols from image"} name={"captcha"} component={Input} validate={[required]}/>}
             {error && <div className={styles.formSummaryError}>
                 {error}
             </div>}
             <div>
-                <button>login</button>
+                <button>sign in</button>
             </div>
         </form>
     )
@@ -66,11 +75,24 @@ const Login = (props: LoginPropsType) => {
         props.authorization(formData)
     }
     if (props.isAuth) {
+
         return <Redirect to={"/profile"}/>
     }
-    return <div>
-        <h1>Login</h1>
-        <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
+    return <div className={s.loginPage}>
+        <div className={s.loginSlider}>
+            <div className={s.slider}>
+                <img src={imgForLogin} className={s.sliderImg}/>
+                <h3>Connect with the world</h3>
+                <p>It is a long established fact that a reader will be distracted by the readable content.</p>
+            </div>
+        </div>
+        <div className={s.loginPart}>
+            <div className={s.loginFormContainer}>
+                <h4>Login</h4>
+                <p>Welcome to socialV, a platform to connect with the social world</p>
+                <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
+            </div>
+        </div>
     </div>
 
 }
@@ -83,5 +105,5 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 }
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {authorization, loginOut}),
-    withRouter,
+    withRouter
 )(Login)

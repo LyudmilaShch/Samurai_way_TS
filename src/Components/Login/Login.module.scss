@@ -1,0 +1,128 @@
+@import '../common/styles/variables.scss';
+
+.loginPage {
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+
+  .loginSlider {
+    background: #2f65b9;
+    width: 50%;
+    display: flex;
+    align-items: center;
+
+    .slider {
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      .sliderImg {
+        width: 28em;
+        height: 15.75em;
+        object-fit: cover;
+        margin: 0 auto;
+        border-radius: 5px;
+      }
+
+      h3 {
+        color: $color-theme-white;
+        font-size: $font-size-h3;
+        margin: 1em auto 0;
+        font-family: $highlight-font-family;
+      }
+
+      p {
+        width: 50%;
+        color: $color-theme-white;
+        margin: 1em auto 0;
+        line-height: 1.66em;
+        text-align: center;
+        font-family: $highlight-font-family;
+      }
+    }
+  }
+
+  .loginPart {
+    width: 50%;
+    display: flex;
+    align-items: center;
+
+    .loginFormContainer {
+      max-width: 45em;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      h4 {
+        color: $global-font-title;
+        font-size: $font-size-h4;
+        margin-bottom: 0;
+        font-family: $highlight-font-family;
+        text-align: center;
+      }
+
+      p {
+        color: $global-font-color;
+        font-size: 1em;
+        margin-top: 1em;
+        font-family: $highlight-font-family;
+      }
+
+      .loginForm {
+        width: 100%;
+        margin: 0 auto;
+        p {
+          font-size: 1em;
+          color: $global-font-title;
+          margin-bottom: 0.875em;
+          font-family: $highlight-font-family;
+        }
+        .field{
+          padding-left: 5px;
+          font-size: 1em;
+          width: 100%;
+          height: 3.123em;
+          background-color: $global-body-bgcolor;
+          border: 0.0625em solid $global-body-bgcolor;
+          color: #6f7f92;
+          border-radius: 5px;
+        }
+
+        .rememberMe{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          font-size: 1em;
+          color: $global-font-title;
+          font-family: $highlight-font-family;
+
+          .input{
+            height: 1em;
+            width: 1em;
+          }
+        }
+        button{
+          width: 100%;
+          cursor: pointer;
+          color: $color-theme-white;
+          line-height: $font-line-height-body;
+          background-color: $color-theme-primary;
+          border-radius: $border-radius;
+          height: auto;
+          position: relative;
+          border: none;
+          overflow: hidden;
+          font-size: $font-size-normal;
+          font-family: $highlight-font-family;
+          letter-spacing: $letter-spacing-one;
+          padding: 0.813em 2em;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}

@@ -40,21 +40,22 @@
 .app-wrapper {
     margin: 0 auto;
     display: grid;
-    width: 1200px;
+    width: 100%;
     grid-template-areas:
-    "h h"
+    /*"h h"*/
     "n c";
-    grid-template-rows: 80px 1fr;
-    grid-template-columns: 2fr 10fr;
+    /*grid-template-rows: 80px 1fr;*/
+    /*grid-template-columns: 2fr 10fr;*/
     background-color: #9A9C6E;
     /*grid-gap: 10px;*/
 }
 
 .app-wrapper-content {
     grid-area: c;
+    width: 100%;
     background-color: rgb(200, 189, 146);
     border-radius: 20px;
-    margin: 20px 20px 20px 0;
+    margin: 80px 20px 20px 0;
     padding: 20px;
     color: #2d281d;
 }

@@ -1,0 +1,48 @@
+@import '../common/styles/variables.scss';
+
+.header{
+    grid-area: h;
+    background-color: $color-theme-white;
+    padding: 5px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    .loginBlock {
+        float: right;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 13.6em;
+        //height: 0.25em;
+        p{
+            color: $global-font-color;
+            font-size: 1em;
+            margin-top: 1em;
+            font-family: $highlight-font-family;
+        }
+        .userAvatar{
+            height: 3.125em;
+            width: 3.125em;
+            min-width: 3.125em;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0;
+        }
+        button{
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            .logout{
+                height: 2.4em;
+                width: 2.4em;
+                fill: $global-font-color;
+            }
+        }
+    }
+
+
+
+}
+

@@ -18,6 +18,7 @@ const DialogsContainer = React.lazy(() => import('./Components/Dialogs/DialogsCo
 const ProfileContainer = React.lazy(() => import('./Components/Profile/ProfileContainer'));
 
 type MapStatePropsType = {
+    isAuth: boolean
     initialized: boolean
 }
 type MapDispatchPropsType = {
@@ -43,25 +44,33 @@ class App extends React.Component<AppPropsType, any> {
             return <Preloader/>
         }
         return (
-            <div className="app-wrapper">
-                <HeaderContainer/>
-                <NavbarContainer/>
-                <div className="app-wrapper-content">
-                    <Suspense fallback={<div><Preloader/></div>}>
-                        <Switch>
-                            <Route exact path={"/"} render={() => <Redirect to="/profile" />}/>
-                            <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
-                            <Route path={"/users"} render={() => <UsersContainer/>}/>
-                            <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
-                            <Route path={"/News"} render={() => <News/>}/>
-                            <Route path={"/Music"} render={() => <Music/>}/>
-                            <Route path={"/Settings"} render={() => <Settings/>}/>
-                            <Route path={"/Login"} render={() => <Login/>}/>
-                            <Route path={"*"} render={() => <div>404 NOT FOUND</div>}/>
-                        </Switch>
-                    </Suspense>
+            <>{this.props.isAuth
+                ? <div className="app-wrapper">
+                    <HeaderContainer/>
+                    <NavbarContainer/>
+                    <div className="app-wrapper-content">
+                        <Suspense fallback={<div><Preloader/></div>}>
+                            <Switch>
+                                <Route exact path={"/"} render={() => <Redirect to="/profile" />}/>
+                                <Route exact path={"/login"} render={() => <Redirect to="/profile" />}/>
+                                <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
+                                <Route path={"/users"} render={() => <UsersContainer/>}/>
+                                <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
+                                <Route path={"/News"} render={() => <News/>}/>
+                                <Route path={"/Music"} render={() => <Music/>}/>
+                                <Route path={"/Settings"} render={() => <Settings/>}/>
+
+                                <Route path={"*"} render={() => <div>404 NOT FOUND</div>}/>
+                            </Switch>
+                        </Suspense>
+                    </div>
                 </div>
-            </div>
+                : <div>
+                    <Route path={"*"} render={() => <Redirect to="/login" />}/>
+                    <Route path={"/login"} render={() => <Login/>}/>
+                </div>
+            }
+            </>
     );
     }
     }
@@ -69,6 +78,7 @@ class App extends React.Component<AppPropsType, any> {
     // export default App;
     const mapStateToProps = (state: AppStateType): MapStatePropsType => {
         return {
+            isAuth: state.auth.data.isAuth,
             initialized: state.app.initialized
         }
     };
