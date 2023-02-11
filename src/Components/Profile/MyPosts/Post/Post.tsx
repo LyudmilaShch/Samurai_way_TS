@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Post.module.css';
+import s from './Post.module.scss';
 
 type PostType = {
     message: string
@@ -16,7 +16,6 @@ export const Post = (props: PostType) => {
             <div>
                 <span>like {props.countlike}</span>
             </div>
-
         </div>
 
     )

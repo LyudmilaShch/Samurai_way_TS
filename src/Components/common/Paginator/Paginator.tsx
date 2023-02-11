@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
-import s from "./Paginator.module.css";
+import s from "./Paginator.module.scss";
+import {ReactComponent as LeftArrow} from "../../../assets/images/leftArrow.svg";
+import {ReactComponent as RightArrow} from "../../../assets/images/rightArrow.svg";
 
 export type UsersPropsType = {
     totalItemsCount: number
@@ -21,20 +23,20 @@ export let Paginator = (props: UsersPropsType) => {
     let rightPortionPageNumber = portionNumber * props.portionSize;
 
 
-    return <div>
-            <button onClick={() => {setPortionNumber(portionNumber -1) }} disabled={portionNumber <= 1 }>
-                Prev
+    return <div className={s.pagination}>
+            <button className={s.buttonIconContainer} onClick={() => {setPortionNumber(portionNumber -1) }} disabled={portionNumber <= 1 }>
+                <LeftArrow className={s.buttonIcon}/>
             </button>
-        {pages
-            .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-            .map((p) => {
-                return <span className={props.currentPage === p ? s.selectedPage : " "}
-                             onClick={(e) => {
-                                 props.onPageChanged(p)
-                             }}>{p} </span>
-            })}
-            <button onClick={() => {setPortionNumber(portionNumber + 1) }} disabled={portionCount <= portionNumber}>
-                Next
+            {pages
+                .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
+                .map((p) => {
+                    return <div className={props.currentPage === p ? s.selectedPage : s.page}
+                                onClick={(e) => {
+                                    props.onPageChanged(p)
+                                }}>{p} </div>
+                })}
+            <button className={s.buttonIconContainer} onClick={() => {setPortionNumber(portionNumber + 1) }} disabled={portionCount <= portionNumber}>
+                <RightArrow className={s.buttonIcon}/>
             </button>
     </div>
 }

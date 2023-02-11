@@ -2,42 +2,61 @@ import {ProfileType} from "../../../../redux/profile-reducer";
 import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input, Textarea} from "../../../common/FormControls/FormsControls";
-import s from '../ProfileInfo.module.css';
+import s from '../ProfileInfo.module.scss';
 import styles from "../../../common/FormControls/FormsControls.module.css";
 
 interface ProfileDataFormProps {
     profile: ProfileType
 }
 
-export const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, ProfileDataFormProps> & ProfileDataFormProps> = ({handleSubmit, error, profile}) => {
+export const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, ProfileDataFormProps> & ProfileDataFormProps> = ({
+                                                                                                                           handleSubmit,
+                                                                                                                           error,
+                                                                                                                           profile
+                                                                                                                       }) => {
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <button>save</button>
+        <form>
+            <div className={s.block}>
+                <h5>Personal information</h5>
             </div>
-            {error && <div className={styles.formSummaryError}>
-                {error}
-            </div>}
-            <div>
-                <b>Name: </b><Field placeholder={'Full name'} name={'fullName'} component={Input}/>
-            </div>
-            <div>
-                <b>About me: </b><Field placeholder={'About me'} name={'aboutMe'} component={Textarea}/>
-            </div>
-            <div>
-                <b>Looking for a job: </b><Field placeholder={''} name={'lookingForAJob'} component={Input}
-                                                 type={"checkbox"}/>
-            </div>
-            <div>
-                <b>My professional skills: </b><Field placeholder={'My professional skills'} name={'lookingForAJobDescription'} component={Textarea}/>
-            </div>
-            <div>
-                <b>Contacts: </b> {Object.keys(profile.contacts).map(key => {
-                return <div className={s.contact}>
-                    <b> {key}: </b><Field placeholder={key} name={"contacts." + key} component={Input}/>
+            <div className={s.block}>
+                {error && <div className={styles.formSummaryError}>
+                    {error}
+                </div>}
+                <div>
+                    <div className={s.nameDescription}>Full name</div>
+                    <Field placeholder={'Full name'} name={'fullName'} component={Input} className={s.field}/>
                 </div>
-
-            })}
+                <div>
+                    <div className={s.nameDescription}>About me</div>
+                    <Field placeholder={'About me'} name={'aboutMe'} component={Textarea} className={s.field}/>
+                </div>
+                <div>
+                    <div className={s.nameDescription}>Looking for a job</div>
+                    <Field placeholder={''} name={'lookingForAJob'} component={Input}
+                           type={"checkbox"} className={s.field}/>
+                </div>
+                <div>
+                    <div className={s.nameDescription}>My professional skills</div>
+                    <Field placeholder={'My professional skills'} name={'lookingForAJobDescription'}
+                           component={Textarea} className={s.field}/>
+                </div>
+            </div>
+            <div>
+                <div className={s.block}>
+                    <h5>Contacts</h5>
+                </div>
+                <div className={s.block}>
+                    {Object.keys(profile.contacts).map(key => {
+                        return <div className={s.contact}>
+                            <div className={s.nameDescription}>{key}:</div>
+                            <Field placeholder={key} name={"contacts." + key} component={Input} className={s.field}/>
+                        </div>
+                    })}
+                    <div>
+                        <button>save</button>
+                    </div>
+                </div>
             </div>
         </form>
     )

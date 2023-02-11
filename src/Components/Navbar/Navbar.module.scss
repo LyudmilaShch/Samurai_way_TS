@@ -1,10 +1,9 @@
 @import '../common/styles/variables.scss';
 
 .navBarContainer {
-  grid-area: n;
   display: block;
   position: fixed;
-  max-width: 16.862em;
+  width: 16.862em;
   top: 0;
   bottom: 0;
   z-index: 999;
@@ -31,7 +30,6 @@
 
 
   .nav {
-
     padding: 20px;
     font-size: 20px;
 

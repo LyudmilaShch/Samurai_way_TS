@@ -1,7 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import s from './ProfileInfo.module.css';
-import {getStatus} from "../../../redux/profile-reducer";
-
+import s from './ProfileInfo.module.scss';
 
 type ProfileStatusType = {
     status: string
@@ -31,12 +29,10 @@ const ProfileStatusWithHooks = (props: ProfileStatusType) => {
         setStatus(e.currentTarget.value);
     }
 
-
-
     return (
         <div>
             {!editMode &&
-                <div>
+                <div className={s.status}>
                     <span onDoubleClick={activateEditMode}>{status}</span>
                 </div>
             }

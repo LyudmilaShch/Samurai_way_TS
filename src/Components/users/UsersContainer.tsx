@@ -64,7 +64,6 @@ class UserContainer extends React.Component<UsersPropsType, StateType> {
                 follow={this.props.follow}
                 followingInProgress={this.props.followingInProgress}
                 toggleInFollowingInProgress={this.props.toggleInFollowingInProgress}
-
             />
         </>
     }

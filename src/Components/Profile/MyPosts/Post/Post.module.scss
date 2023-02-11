@@ -1,0 +1,17 @@
+@import '../../../common/styles/variables.scss';
+
+.item{
+    background-color: $color-theme-white;
+    margin: 16px;
+    padding: 16px;
+    border-radius: $border-radius;
+    text-align: left;
+
+
+    img{
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}

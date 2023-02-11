@@ -1,0 +1,212 @@
+@import '../common/styles/variables.scss';
+
+.dialogs {
+  display: grid;
+  grid-template-columns: 4fr 10fr;
+  min-height: 93vh;
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .dialogsItems {
+    padding: 20px;
+    font-weight: 400;
+    text-align: left;
+    font-size: $font-size-h5;
+    color: $global-font-title;
+    font-family: $highlight-font-family;
+
+    .names {
+      font-size: 12pt;
+      position: relative;
+      background-color: $color-theme-white;
+      margin: 16px;
+      padding: 16px;
+      border-radius: $border-radius;
+
+      .dialogName {
+        padding-left: 70px;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        font-size: $font-size-normal;
+        line-height: 16px;
+        color: $global-font-title;
+        font-weight: 500;
+        margin: 0;
+      }
+
+    }
+  }
+}
+
+.messages {
+
+
+  .nameMessages {
+    padding: 19px;
+    font-weight: 400;
+    font-size: $font-size-h5;
+    color: $global-font-title;
+    font-family: $highlight-font-family;
+    text-align: center
+  }
+
+  .messagesContainer {
+    background-color: $color-theme-white;
+    width: 90%;
+    border-radius: $border-radius;
+    text-align: left;
+    margin: 0;
+    padding: 16px;
+
+    .message {
+      display: flex;
+      padding: 10px 10px 10px 20px;
+      align-items: flex-end;
+
+      img {
+        height: 3em;
+        width: 3em;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .angle {
+        width: 15px;
+        height: 15px;
+        background: radial-gradient(circle at 0 0, rgba(0, 0, 0, 0) 15px, $global-body-bgcolor 0);
+      }
+
+      .blockMessage {
+        border-radius: 10px 10px 10px 0;
+        padding: 10px;
+        background-color: $global-body-bgcolor;
+        color: $global-font-color;
+
+        .name {
+          font-weight: bold;
+          color: #a46c34;
+          font-size: 17px;
+        }
+
+        .text {
+          max-width: 300px;
+          min-width: 150px;
+          word-wrap: break-word;
+          color: $global-font-color;
+          font-size: 15px;
+          font-family: $highlight-font-family;
+        }
+
+      }
+    }
+
+    .messageRight {
+      display: flex;
+      padding: 10px 20px 10px 10px;
+      direction: rtl;
+      align-items: flex-end;
+
+      img {
+        height: 3em;
+        width: 3em;
+        border-radius: 50%;
+        object-fit: cover;
+        float: right;
+      }
+
+      .angleRight {
+        width: 15px;
+        height: 15px;
+        background: radial-gradient(circle at 15px 0px, rgba(0, 0, 0, 0) 15px, $color-theme-primary 0);
+      }
+
+      .blockMessageRight {
+        border-radius: 10px 10px 0 10px;
+        padding: 10px;
+        background-color: $color-theme-primary;
+        color: $color-theme-white;
+
+        .name {
+          font-weight: bold;
+          color: #a46c34;
+          font-size: 17px;
+        }
+
+        .text {
+          max-width: 300px;
+          min-width: 150px;
+          word-wrap: break-word;
+          color: #f7f2ed;
+          font-size: 15px;
+          font-family: $highlight-font-family;
+          font-weight: 400;
+        }
+
+      }
+    }
+  }
+
+  .sendMessageContainer {
+    background-color: $color-theme-white;
+    width: 90%;
+    margin-top: 16px;
+    padding: 16px;
+    border-radius: $border-radius;
+    text-align: center;
+
+    .sendMessageArea {
+      width: 100%;
+      border-radius: 3px;
+      border: 1px solid $global-font-color;
+      font-size: $font-size-normal;
+      font-family: $highlight-font-family;
+      padding: 0 2em 0 1em;
+      margin-bottom: 1em;
+      line-height: 3.138em;
+      color: $global-font-color;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    .buttonContainer {
+      text-align: right;
+
+      .sendMessageButton {
+        cursor: pointer;
+        color: $color-theme-white;
+        line-height: $font-line-height-body;
+        background-color: $color-theme-primary;
+        border-radius: $border-radius;
+        height: auto;
+        border: none;
+        font-size: $font-size-normal;
+        font-family: $highlight-font-family;
+        letter-spacing: $letter-spacing-one;
+        padding: 0.5em 2em;
+        margin-bottom: 1em;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,180 @@
+@import '../../common/styles/variables.scss';
+
+.profileInfo {
+  background-color: $global-body-bgcolor;
+
+
+  .profileImg {
+    background-image: url(https://wordpress.iqonic.design/product/wp/socialv/wp-content/themes/socialv-themes/assets/images/redux/default-cover.jpg);
+    height: 15em;
+    position: static;
+  }
+
+  .profileDataContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    background: $color-theme-white;
+    margin: 0 0 16px 0;
+    border-radius: $border-radius;
+
+    .profileCenterBlock {
+      text-align: center;
+      margin-top: -7em;
+      width: 33%;
+
+      .profileAvatar {
+        position: relative;
+        display: inline-block;
+        padding: 0.25em;
+        margin-bottom: 1.5em;
+        background: $color-theme-white;
+        border-radius: $border-radius;
+      }
+
+      .avatar {
+        display: inline-block;
+        padding: 0.25em;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: $border-radius;
+      }
+
+      .inputChangeAvatar {
+        position: absolute;
+        right: -0.5em;
+        top: -0.8em;
+        left: auto;
+
+        img {
+          cursor: pointer;
+          height: 32px;
+          width: 32px;
+        }
+      }
+
+      h5 {
+        color: $global-font-title;
+        font-size: $font-size-h5;
+        font-family: $highlight-font-family;
+        font-weight: 500;
+        margin: 0;
+        margin-bottom: 1.5em;
+      }
+
+      .status {
+        color: $global-font-color;
+        font-size: $font-size-body;
+        font-family: $highlight-font-family;
+      }
+    }
+
+  }
+
+  .iconList {
+    background-color: $color-theme-white;
+    display: flex;
+    justify-content: space-between;
+    margin: 16px;
+    border-radius: $border-radius;
+    text-align: center;
+
+    .iconContainer {
+      padding: 2.5em 0.5em;
+      display: inline-block;
+      float: inherit;
+      position: relative;
+      width: 11.3em;
+      margin: 0 auto;
+      text-align: center;
+
+      button {
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        text-align: center;
+        width: 7em;
+
+        .icon {
+          height: 2.4em;
+          width: 2.4em;
+          fill: $global-font-color;
+          background-color: $global-body-bgcolor;
+          padding: 15%;
+        }
+        .iconActive{
+          height: 2.4em;
+          width: 2.4em;
+          fill: $color-theme-white;
+          background-color: $color-theme-primary;
+          border-radius: $border-radius;
+          padding: 15%;
+        }
+        p{
+          color: $global-font-color;
+          font-size: $font-size-normal;
+          font-family: $highlight-font-family;
+        }
+      }
+    }
+  }
+
+  .profileData {
+
+    .block{
+      background-color: $color-theme-white;
+      margin: 16px;
+      padding: 16px;
+      border-radius: $border-radius;
+      text-align: left;
+    }
+
+    .nameDescription{
+      color: $global-font-color;
+      font-size: $font-size-normal;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    p{
+      color: $global-font-title;
+      font-size: $font-size-normal;
+      margin-top: 0;
+      margin-bottom: 2.5em;
+      font-weight: 500;
+    }
+
+    h5{
+      font-size: $font-size-h5;
+      color: $global-font-title;
+      font-family: $highlight-font-family;
+    }
+
+    .field{
+      padding: 0 2.875em 0 1em;
+      line-height: 3.138em;
+      color: $global-font-color;
+      margin-bottom: 2.5em;
+    }
+
+    button {
+      display: block;
+      cursor: pointer;
+      color: $color-theme-white;
+      line-height: $font-line-height-body;
+      background-color: $color-theme-primary;
+      border-radius: $border-radius;
+      height: auto;
+      border: none;
+      font-size: $font-size-normal;
+      font-family: $highlight-font-family;
+      letter-spacing: $letter-spacing-one;
+      padding: 0.7em 2em;
+      text-transform: uppercase;
+    }
+  }
+}
+

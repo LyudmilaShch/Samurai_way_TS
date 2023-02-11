@@ -1,13 +1,13 @@
 @import '../common/styles/variables.scss';
 
 .header{
-    grid-area: h;
     background-color: $color-theme-white;
     padding: 5px;
     position: fixed;
     left: 0;
     right: 0;
     top: 0;
+    z-index: 998;
 
     .loginBlock {
         float: right;
@@ -41,8 +41,5 @@
             }
         }
     }
-
-
-
 }
 

@@ -1,5 +1,5 @@
 import React, {Suspense} from 'react';
-import './App.css';
+import './App.scss';
 import {BrowserRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";

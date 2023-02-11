@@ -1,5 +1,5 @@
 import React from 'react';
-import s from "../../Dialogs/Dialogs.module.css";
+import s from "../../Dialogs/Dialogs.module.scss";
 import {SidebarType} from "../../../redux/navbar-reducer";
 
 

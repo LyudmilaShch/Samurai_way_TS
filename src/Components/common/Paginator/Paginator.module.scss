@@ -1,0 +1,47 @@
+@import '../../common/styles/variables.scss';
+
+.pagination{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .selectedPage {
+    width: 2.813em;
+    height: 2.813em;
+    line-height: 2.813em;
+    z-index: 1;
+    color: $color-theme-white;
+    background: $color-theme-primary;
+    border-color: $color-theme-primary;
+    border-radius: $border-radius;
+    text-align: center;
+    margin-right: 0.625em;
+  }
+  .page{
+    text-align: center;
+    width: 2.813em;
+    height: 2.813em;
+    z-index: 1;
+    line-height: 2.813em;
+    border: 0.0625em solid $border-color-light;
+    margin-right: 0.625em;
+  }
+}
+
+
+.buttonIconContainer {
+  width: 2.813em;
+  height: 2.813em;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: center;
+
+  .buttonIcon {
+    height: 1.4em;
+    width: 1.4em;
+    fill: $global-font-color;
+    border: none;
+    padding: 15%;
+  }
+}

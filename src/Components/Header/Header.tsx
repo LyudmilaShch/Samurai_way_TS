@@ -8,9 +8,6 @@ import { ReactComponent as Logout } from "../../assets/images/logout.svg";
 export const Header = (props: AuthType) => {
     return (
         <header className={s.header}>
-            {/*<img*/}
-            {/*    src={"https://pngimg.com/uploads/hedgehog/small/hedgehog_PNG18.png"}/>*/}
-            {/*<div className={s.title}> WILDchat</div>*/}
             <div>
                 {props.isAuth
                     ? <div className={s.loginBlock}>
@@ -22,7 +19,6 @@ export const Header = (props: AuthType) => {
                     : <NavLink to={'/login'}>Logout</NavLink>
                 }
             </div>
-
         </header>
     )
 }

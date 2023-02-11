@@ -1,0 +1,53 @@
+@import '../../common/styles/variables.scss';
+
+.postsBlock {
+  background-color: $color-theme-white;
+  margin: 16px;
+  padding: 16px;
+  border-radius: $border-radius;
+  text-align: center;
+
+
+  h5 {
+    text-align: left;
+    font-size: $font-size-h5;
+    color: $global-font-title;
+    font-family: $highlight-font-family;
+  }
+
+    .addPostArea {
+      width: 100%;
+      border-radius: 3px;
+      border: 1px solid $global-font-color;
+      font-size: $font-size-normal;
+      font-family: $highlight-font-family;
+      padding: 0 2em 0 1em;
+      margin-bottom: 1em;
+      line-height: 3.138em;
+      color: $global-font-color;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    .buttonContainer {
+      text-align: right;
+
+      .addPostButton {
+        cursor: pointer;
+        color: $color-theme-white;
+        line-height: $font-line-height-body;
+        background-color: $color-theme-primary;
+        border-radius: $border-radius;
+        height: auto;
+        border: none;
+        font-size: $font-size-normal;
+        font-family: $highlight-font-family;
+        letter-spacing: $letter-spacing-one;
+        padding: 0.7em 2em;
+        margin-bottom: 1em;
+        text-transform: uppercase;
+      }
+    }
+
+}

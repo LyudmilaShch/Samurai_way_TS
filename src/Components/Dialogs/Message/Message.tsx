@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './../Dialogs.module.css';
+import s from '../Dialogs.module.scss';
 
 type MessageType = {
     avatar: string,
@@ -25,7 +25,7 @@ export const Message = (props: MessageType) => {
             <img src={props.avatar} alt="Avatar"></img>
             <div className={locationAngle}/>
             <div className={locationBlockMessage}>
-                <div className={s.name}>{props.name}</div>
+                {/*<div className={s.name}>{props.name}</div>*/}
                 <div className={s.text}>{props.message}</div>
             </div>
         </div>)

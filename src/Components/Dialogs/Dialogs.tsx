@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Dialogs.module.css';
+import s from './Dialogs.module.scss';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {DialogsPropsType} from "./DialogsContainer";
@@ -35,7 +35,10 @@ export const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className={s.messages}>
                 <div className={s.nameMessages}> Rabbit</div>
-                {messagesElements}
+                <div className={s.messagesContainer}>
+                    {messagesElements}
+                </div>
+
                 <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
 
@@ -48,7 +51,7 @@ const maxLength50 = maxLengthCreator(50)
 const AddMessageForm: React.FC<InjectedFormProps<MessageDataType>> = (props)  => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <div>
+            <div className={s.sendMessageContainer}>
                 <Field component={Textarea}
                        name={"newMessageText"}
                        placeholder={"Enter your message"}
@@ -59,7 +62,10 @@ const AddMessageForm: React.FC<InjectedFormProps<MessageDataType>> = (props)  =>
                     {/*          value={state.newMessageText}*/}
                     {/*          onChange={messageOnChange}>*/}
                     {/*</textarea>*/}
-                <button className={s.sendMessageButton}>Send</button>
+                <div className={s.buttonContainer}>
+                    <button className={s.sendMessageButton}>Send</button>
+                </div>
+
             </div>
         </form>
     )

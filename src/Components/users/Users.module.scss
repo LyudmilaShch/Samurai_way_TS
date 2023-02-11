@@ -1,0 +1,89 @@
+@import '../common/styles/variables.scss';
+
+.usersContainer {
+  background-color: $global-body-bgcolor;
+  padding: 8px 0 8px 0;
+  min-height: 93vh;
+
+  .usersBlock {
+    background-color: $color-theme-white;
+    margin: 16px;
+    padding: 16px;
+    border-radius: $border-radius;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+
+    .userBlock {
+      background-color: $global-body-bgcolor;
+      width: 90%;
+      margin: 16px;
+      padding: 16px;
+      border-radius: $border-radius;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+
+      .userInformationContainer {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+
+        .userAvatar {
+          height: 5em;
+          width: 5em;
+          border-radius: 50%;
+          object-fit: cover;
+
+        }
+
+        h5 {
+          font-size: $font-size-h5;
+          color: $global-font-title;
+          font-family: $highlight-font-family;
+          margin: 0;
+          padding: 0 0 0 1em;
+        }
+
+        .userInfo {
+          font-size: $font-size-normal;
+          color: $global-font-color;
+          font-family: $highlight-font-family;
+          font-weight: 400;
+          padding: 0 0 0 1.2em;
+        }
+      }
+
+      .unfollowedButton {
+        color: $color-theme-white;
+        background: $color-theme-success;
+        padding: 0.3em 0.5em;
+        font-size: $font-size-body;
+        font-family: $highlight-font-family;
+        border-radius: $border-radius;
+        border: 0.063em solid $color-theme-success;
+        box-shadow: none;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .followedButton {
+        color: $color-theme-white;
+        background: $color-theme-orange;
+        padding: 0.3em 0.5em;
+        font-size: $font-size-body;
+        font-family: $highlight-font-family;
+        border-radius: $border-radius;
+        border: 0.063em solid $color-theme-orange;
+        box-shadow: none;
+        cursor: pointer;
+        font-weight: 600;
+      }
+    }
+  }
+}
+

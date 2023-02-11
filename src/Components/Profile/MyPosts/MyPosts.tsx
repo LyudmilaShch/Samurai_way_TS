@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './MyPosts.module.css';
+import s from './MyPosts.module.scss';
 import {Post} from "./Post/Post";
 import {PostsPropsType} from "./MyPostsContainer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
@@ -24,15 +24,20 @@ export const MyPosts = React.memo((props: PostsPropsType) => {
 
 
     return (
-        <div className={s.postsBlock}>
-            <h3>My Posts</h3>
-            <div>
-                <AddPostFormRedux onSubmit={addNewPost}/>
+        <div>
+            <div   className={s.postsBlock}>
+                <h5>My Posts</h5>
+                <div>
+                    <AddPostFormRedux onSubmit={addNewPost}/>
+                </div>
             </div>
-            <div className={s.posts}>
-                {postsElements}
+            <div >
+                <div>
+                    {postsElements}
+                </div>
             </div>
         </div>
+
     )
 })
 
@@ -47,8 +52,10 @@ const AddPostForm: React.FC<InjectedFormProps<PostDataType>> = (props) => {
                        placeholder={"Enter your post"}
                        className={s.addPostArea}
                        validate={[required, maxLength10]}/>
+                <div className={s.buttonContainer}>
+                    <button className={s.addPostButton}>Add post</button>
+                </div>
 
-                <button className={s.addPostButton}>Add post</button>
             </div>
         </form>
     )
