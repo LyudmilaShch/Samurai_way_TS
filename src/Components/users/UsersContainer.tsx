@@ -8,18 +8,15 @@ import {
     unfollow
 } from '../../redux/users-reducer';
 import {Users} from './Users';
-import {Preloader} from "../common/preloader/Preloader";
-import {compose} from "redux";
+import {Preloader} from '../common/preloader/Preloader';
+import {compose} from 'redux';
 import {
     getCurrentPage, getFollowingInProgress,
     getIsFetching,
     getPageSize,
     getTotalUsersCount, getUsers,
-} from "../../redux/users-selectors";
+} from '../../redux/users-selectors';
 import { UsersType } from '../../types/types';
-
-
-type StateType = {}
 
 type MapStatePropsType = {
     users: Array<UsersType>
@@ -34,11 +31,11 @@ type MapDispatchPropsType = {
     unfollow: (userId: number) => void
     setCurrentPage: (currentPage: number) => void
     toggleInFollowingInProgress: (isFetching: boolean, userId: number) => void
-    requestUsers: (currentPage: any, pageSize: any ) => void
+    requestUsers: (currentPage: any, pageSize: number ) => void
 }
 export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
 
-class UserContainer extends React.Component<UsersPropsType, StateType> {
+class UserContainer extends React.Component<UsersPropsType> {
 
     constructor(props: any) {
         super(props);

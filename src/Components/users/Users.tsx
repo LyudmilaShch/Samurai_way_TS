@@ -1,8 +1,8 @@
 import React from 'react'
-import {Paginator} from "../common/Paginator/Paginator";
-import {User} from "./User";
-import s from "./Users.module.scss"
-import {UsersType} from "../../types/types";
+import {Paginator} from '../common/Paginator/Paginator';
+import {User} from './User';
+import s from './Users.module.scss'
+import {UsersType} from '../../types/types';
 
 export type UsersPropsType = {
     totalUsersCount: number
@@ -16,8 +16,7 @@ export type UsersPropsType = {
     follow: (userId: number) => void,
 }
 
-
-export let Users = ({
+export let Users: React.FC<UsersPropsType> = ({
                         totalUsersCount,
                         pageSize,
                         currentPage,
@@ -25,9 +24,8 @@ export let Users = ({
                         users,
                         follow,
                         unfollow,
-                        followingInProgress,
-                        ...props
-                    }: UsersPropsType) => {
+                        followingInProgress
+                    }) => {
 
     return <div className={s.usersContainer}>
         <div className={s.usersBlock}>
@@ -36,7 +34,6 @@ export let Users = ({
                     <User user={u} followingInProgress={followingInProgress} unfollow={unfollow} follow={follow}/>
                 )
             }
-
         <Paginator totalItemsCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage}
                    onPageChanged={onPageChanged} portionSize={10}/>
         </div>
