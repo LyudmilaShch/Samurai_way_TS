@@ -2,7 +2,7 @@ import {ActionsTypes} from "./store";
 import {authAPI, authorizationModelType, securityAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 import {Dispatch} from "redux";
-import {ProfileType} from "../types/types";
+import {ProfileType, ThunkType} from "../types/types";
 
 export type AuthType = {
     "login": string | null,
@@ -91,7 +91,7 @@ export const getAuthMe = () => async (dispatch: Dispatch) => {
 }
 
 
-export const authorization = (authorizationModel: authorizationModelType) => async (dispatch: any) => {
+export const authorization = (authorizationModel: authorizationModelType): ThunkType => async (dispatch) => {
     let response = await authAPI.loginPost(authorizationModel)
     if (response.data.resultCode === 0) {
         dispatch(getAuthMe())
@@ -104,7 +104,7 @@ export const authorization = (authorizationModel: authorizationModelType) => asy
     }
 }
 
-export const loginOut = () => async (dispatch: Dispatch) => {
+export const loginOut = (): ThunkType => async (dispatch) => {
     let response = await authAPI.loginOut()
     if (response.data.resultCode === 0) {
         dispatch(setAuthUserData(null, null, null, false))
@@ -112,7 +112,7 @@ export const loginOut = () => async (dispatch: Dispatch) => {
     }
 }
 
-export const getCaptchaUrl = () => async (dispatch: Dispatch) => {
+export const getCaptchaUrl = (): ThunkType => async (dispatch) => {
     let response = await securityAPI.getCaptchaUrl()
     const captchaUrl = response.data.url
     dispatch(getCaptchaUrlSuccess(captchaUrl))

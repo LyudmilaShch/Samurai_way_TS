@@ -1,3 +1,7 @@
+import {ThunkAction} from "redux-thunk";
+import {AppStateType} from "../redux/redux-store";
+import {ActionsTypes} from "../redux/store";
+
 export type ProfileType = {
     "aboutMe": string,
     "contacts": {
@@ -13,7 +17,7 @@ export type ProfileType = {
     "lookingForAJob": boolean,
     "lookingForAJobDescription": string,
     "fullName": string,
-    "userId": number,
+    "userId": string,
     "photos": PhotoType
 }
 export type PhotoType = {
@@ -38,3 +42,5 @@ export type UsersType = {
         country: string
     }
 }
+
+export type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>

@@ -1,5 +1,7 @@
 import {ActionsTypes} from "./store";
 import {getAuthMe} from "./auth-reducer";
+import {ThunkAction} from "redux-thunk";
+import {AppStateType} from "./redux-store";
 
 
 let initialState: InitialStateType = {
@@ -26,8 +28,8 @@ type initializedSuccessActionType = {
 }
 export const initializedSuccess = (): initializedSuccessActionType => ({type: 'INITIALIZED-SUCCESS'}) as const
 
-
-export const initializeApp = () => (dispatch: any) => {
+type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsTypes>
+export const initializeApp = (): ThunkType => (dispatch) => {
     let promise = dispatch(getAuthMe())
 
     Promise.all([promise])
