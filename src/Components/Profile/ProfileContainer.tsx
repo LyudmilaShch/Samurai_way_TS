@@ -3,7 +3,6 @@ import {Profile} from "./Profile";
 import {
     getStatus,
     getUserProfile,
-    ProfileType,
     savePhoto,
     saveProfile,
     updateStatus
@@ -12,6 +11,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
+import {ProfileType} from "../../types/types";
 
 
 type StateType = {}
@@ -21,7 +21,7 @@ type PathParamsType = {
 }
 
 type MapStatePropsType = {
-    profile: ProfileType
+    profile: ProfileType | null
     status: string
     authorizedUserId: number | null
     isAuth: boolean

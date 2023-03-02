@@ -2,8 +2,7 @@ import {ActionsTypes} from "./store";
 import {authAPI, authorizationModelType, securityAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 import {Dispatch} from "redux";
-import {ProfileType} from "./profile-reducer";
-
+import {ProfileType} from "../types/types";
 
 export type AuthType = {
     "login": string | null,
@@ -11,10 +10,10 @@ export type AuthType = {
     photo: string | null
     loginOut: () => void
 
-    profile?: ProfileType
+    profile: ProfileType | null
 }
 
-let initialState = {
+let initialState: InitialStateType = {
     data: {
         userid: null,
         email: null,
@@ -36,7 +35,7 @@ export type InitialStateType = {
     captchaUrl: string | null
 }
 
-export const AuthReducer = (state: InitialStateType = initialState, action: ActionsTypes) => {
+export const AuthReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case 'auth/SET-USER-DATA':
             return {
@@ -51,19 +50,33 @@ export const AuthReducer = (state: InitialStateType = initialState, action: Acti
     }
 }
 
-export const setAuthUserData = (userid: number | null, email: string | null, login: string | null, isAuth: boolean) =>
+type setAuthUserDataActionType = {
+    type: 'auth/SET-USER-DATA',
+    data: {userid: number | null, email: string | null, login: string | null, isAuth: boolean}
+}
+
+export const setAuthUserData = (userid: number | null, email: string | null, login: string | null, isAuth: boolean): setAuthUserDataActionType =>
     ({
         type: 'auth/SET-USER-DATA',
         data: {userid, email, login, isAuth}
     }) as const
 
-export const setAuthUserPhoto = (photo: string | null) =>
+type setAuthUserPhotoActionType = {
+    type: 'auth/SET-AUTH-USER-PHOTO',
+    photo: string | null
+}
+
+export const setAuthUserPhoto = (photo: string | null): setAuthUserPhotoActionType =>
     ({
         type: 'auth/SET-AUTH-USER-PHOTO',
         photo: photo
     }) as const
 
-export const getCaptchaUrlSuccess = (captchaUrl: string | null) =>
+type getCaptchaUrlSuccessActionType = {
+    type: 'auth/GET-CAPTCHA-URL-SUCCESS',
+    payload: {captchaUrl: string | null}
+}
+export const getCaptchaUrlSuccess = (captchaUrl: string | null): getCaptchaUrlSuccessActionType =>
     ({
         type: 'auth/GET-CAPTCHA-URL-SUCCESS',
         payload: {captchaUrl}
@@ -91,7 +104,7 @@ export const authorization = (authorizationModel: authorizationModelType) => asy
     }
 }
 
-export const loginOut = () => async (dispatch: any) => {
+export const loginOut = () => async (dispatch: Dispatch) => {
     let response = await authAPI.loginOut()
     if (response.data.resultCode === 0) {
         dispatch(setAuthUserData(null, null, null, false))
@@ -99,7 +112,7 @@ export const loginOut = () => async (dispatch: any) => {
     }
 }
 
-export const getCaptchaUrl = () => async (dispatch: any) => {
+export const getCaptchaUrl = () => async (dispatch: Dispatch) => {
     let response = await securityAPI.getCaptchaUrl()
     const captchaUrl = response.data.url
     dispatch(getCaptchaUrlSuccess(captchaUrl))

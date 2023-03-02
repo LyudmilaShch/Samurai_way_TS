@@ -3,16 +3,16 @@ import s from './ProfileInfo.module.scss';
 import {Preloader} from "../../common/preloader/Preloader";
 import userPhoto from "../../../assets/images/user.png";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
-import {ProfileType} from "../../../redux/profile-reducer";
 import {ProfileDataFormReduxForm} from "./ProfileData/ProfileDataForm";
 import changeAvatarImg from "../../../assets/images/camera.png"
 import {ReactComponent as Calendar} from "../../../assets/images/calendar.svg";
 import {ReactComponent as Person} from "../../../assets/images/person.svg";
 import {MyPostsContainer} from "../MyPosts/MyPostsContainer";
+import {ProfileType} from "../../../types/types";
 
 
 type ProfileInfoType = {
-    profile: ProfileType,
+    profile: ProfileType | null,
     status: string,
     updateStatus: (status: string) => void
     isOwner: boolean

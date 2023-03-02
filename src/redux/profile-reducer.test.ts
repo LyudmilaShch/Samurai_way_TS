@@ -28,7 +28,9 @@ let state = {
         },
     ],
     profile:  null,
-    status: " "
+    status: " ",
+    newPostText: " ",
+    photos: " "
 }
 test ('length of post should be incremented', () => {
     //1. test data

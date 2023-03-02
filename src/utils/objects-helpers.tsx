@@ -1,4 +1,5 @@
-import {UsersType} from "../redux/users-reducer";
+import {UsersType} from "../types/types";
+
 
 export const updateObjectInArray = (items: Array<UsersType>, itemId: number, objPropName: string, newObjProps: any) => {
     items.map(u => {

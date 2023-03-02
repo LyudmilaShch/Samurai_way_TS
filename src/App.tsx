@@ -75,7 +75,6 @@ class App extends React.Component<AppPropsType, any> {
     }
     }
 
-    // export default App;
     const mapStateToProps = (state: AppStateType): MapStatePropsType => {
         return {
             isAuth: state.auth.data.isAuth,

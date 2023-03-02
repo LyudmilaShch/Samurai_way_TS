@@ -5,7 +5,7 @@ import {
     follow, requestUsers,
     setCurrentPage,
     toggleInFollowingInProgress,
-    unfollow, UsersType
+    unfollow
 } from '../../redux/users-reducer';
 import {Users} from './Users';
 import {Preloader} from "../common/preloader/Preloader";
@@ -16,6 +16,7 @@ import {
     getPageSize,
     getTotalUsersCount, getUsers,
 } from "../../redux/users-selectors";
+import { UsersType } from '../../types/types';
 
 
 type StateType = {}

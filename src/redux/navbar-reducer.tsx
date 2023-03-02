@@ -3,9 +3,7 @@ export type SidebarType = {
     avatar: string
     id: number
 }
-export type InitialStateType = {
-    sidebar: Array<SidebarType>
-}
+export type InitialStateType = typeof initialState
 
 let initialState = {
     sidebar: [
@@ -16,10 +14,10 @@ let initialState = {
             name: 'Mouse',
             avatar: "https://st3.depositphotos.com/4431055/12920/i/600/depositphotos_129204976-stock-photo-gray-mouse-animal-and-cheese.jpg"
         }
-    ] }
+    ] as Array<SidebarType>}
 
 
-export const NavbarReducer = (state: InitialStateType = initialState) => {
+export const NavbarReducer = (state = initialState): InitialStateType => {
     return state;
 }
 

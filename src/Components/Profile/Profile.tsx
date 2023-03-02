@@ -1,9 +1,10 @@
 import React from 'react';
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {ProfileType} from "../../redux/profile-reducer";
+import {ProfileType} from "../../types/types";
+
 
 type ProfilePropsType = {
-    profile: ProfileType,
+    profile: ProfileType | null,
     status: string,
     updateStatus: (status: string) => void
     isOwner: boolean

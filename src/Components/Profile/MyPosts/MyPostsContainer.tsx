@@ -1,37 +1,11 @@
 import React from 'react';
-import {addPostCreator, PostsType} from "../../../redux/profile-reducer";
+import {addPostCreator} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
+import { PostsType } from '../../../types/types';
 
-
-type MyPostsContainerType = {
-    //store: StoreType
-}
-
-
-// export const MyPostsContainer = (props: MyPostsContainerType) => {
-//     return (
-//         <StoreContext.Consumer>
-//             {store => {
-//                 let state = store.getState()
-//                 const onAddPost = () => {
-//                     store.dispatch(addPostCreator(state.profilePage.newPostText));
-//                 }
-//                 const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-//                     store.dispatch(UpdateNewPostTextCreator(e.currentTarget.value));
-//                 }
-//                 return <MyPosts
-//                     addPost={onAddPost}
-//                     updateNewPostText={onPostChange}
-//                     posts={state.profilePage.posts}
-//                     newPostText={state.profilePage.newPostText}
-//                 />
-//             }}
-//         </StoreContext.Consumer>
-//     )
-// }
 type MapStatePropsType = {
     posts:  Array<PostsType>,
 }
