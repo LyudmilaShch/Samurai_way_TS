@@ -1,4 +1,4 @@
-import {addPostCreator, deletePostCreator, ProfileReducer} from "./profile-reducer";
+import {actions, ProfileReducer} from "./profile-reducer";
 
 let state = {
     posts: [
@@ -34,7 +34,7 @@ let state = {
 }
 test ('length of post should be incremented', () => {
     //1. test data
-    let action = addPostCreator("it.com")
+    let action = actions.addPostCreator("it.com")
 
     //2. action
     let newState = ProfileReducer( state, action)
@@ -45,7 +45,7 @@ test ('length of post should be incremented', () => {
 
 test ('message of new post should be  "it.com"', () => {
     //1. test data
-    let action = addPostCreator("it.com")
+    let action = actions.addPostCreator("it.com")
 
     //2. action
     let newState = ProfileReducer( state, action)
@@ -56,7 +56,7 @@ test ('message of new post should be  "it.com"', () => {
 
 test ('length of post should be decremented', () => {
     //1. test data
-    let action = deletePostCreator(1)
+    let action = actions.deletePostCreator(1)
 
     //2. action
     let newState = ProfileReducer( state, action)
@@ -66,7 +66,7 @@ test ('length of post should be decremented', () => {
 })
 test ('after deleting length of messages should be decrement', () => {
     //1. test data
-    let action = deletePostCreator(1000)
+    let action = actions.deletePostCreator(1000)
 
     //2. action
     let newState = ProfileReducer( state, action)

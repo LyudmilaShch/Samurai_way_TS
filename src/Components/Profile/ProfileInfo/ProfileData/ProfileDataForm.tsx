@@ -54,7 +54,7 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, ProfileDat
                         </div>
                     })}
                     <div>
-                        <button>save</button>
+                        <button onClick={handleSubmit}>save</button>
                     </div>
                 </div>
             </div>

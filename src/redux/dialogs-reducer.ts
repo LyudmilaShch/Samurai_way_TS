@@ -1,12 +1,7 @@
-import {ActionsTypes, MessagesType} from "./store";
+import {MessagesType} from "./store";
+import {InferActionsTypes} from "./redux-store";
 
-export type DialogType = {
-    id: number,
-    name: string,
-    avatar: string
-}
-
-let initialState  = {
+let initialState = {
     dialogs: [
         {id: 1, name: 'Rabbit', avatar: "https://www.belanta.vet/vet-blog/wp-content/uploads/2019/11/1-6.jpg"},
         {id: 2, name: 'Leo', avatar: "https://vsezhivoe.ru/wp-content/uploads/2017/10/lev-14851893401673.jpg"},
@@ -58,11 +53,9 @@ let initialState  = {
     ] as Array<MessagesType>
 }
 
-export type InitialStateType = typeof initialState
-
 export const DialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
-        switch (action.type) {
-        case 'SEND-MESSAGE': {
+    switch (action.type) {
+        case 'SN/DIALOGS/SEND-MESSAGE': {
             const newMessage: MessagesType = {
                 id: 5,
                 name: "Leo",
@@ -77,13 +70,20 @@ export const DialogsReducer = (state: InitialStateType = initialState, action: A
     }
 }
 
-type SendMessageCreatorActionType = {
-    type: 'SEND-MESSAGE',
-    messageText: string
-}
-export const SendMessageCreator = (newMessageText: string): SendMessageCreatorActionType =>
-    ({
-        type: 'SEND-MESSAGE',
-        messageText: newMessageText
-    }) as const
+export const actions = {
+    SendMessageCreator: (newMessageText: string) =>
+        ({
+            type: 'SN/DIALOGS/SEND-MESSAGE',
+            messageText: newMessageText
+        }) as const
 
+}
+
+// types
+export type DialogType = {
+    id: number,
+    name: string,
+    avatar: string
+}
+export type InitialStateType = typeof initialState
+type ActionsTypes = InferActionsTypes<typeof actions>
