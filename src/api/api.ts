@@ -1,7 +1,5 @@
 import axios from "axios";
 import {ProfileType} from "../types/types";
-import any = jasmine.any;
-import {isNumber} from "util";
 
 const instance = axios.create({
     withCredentials: true,
