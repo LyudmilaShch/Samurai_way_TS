@@ -1,5 +1,7 @@
 import axios from "axios";
 import {ProfileType} from "../types/types";
+import any = jasmine.any;
+import {isNumber} from "util";
 
 const instance = axios.create({
     withCredentials: true,
@@ -52,21 +54,47 @@ export const profileAPI = {
         return instance.put('/profile', profile)
     }
 }
+export enum ResultCodesEnum {
+    Success = 0,
+    Error = 1 ,
+}
+
+export enum ResultCodeForCaptchaEnum {
+    CaptchaIsRequired = 10
+}
+
+type MeResponseType = {
+    data: {
+        id: number,
+        email: string,
+        login: string
+    },
+    resultCode: ResultCodesEnum,
+    messages: Array<string>
+}
+
+type LoginResponseType = {
+    data: {
+        userId: number
+    },
+    resultCode: ResultCodesEnum | ResultCodeForCaptchaEnum,
+    messages: Array<string>
+}
 export const authAPI = {
     getAuthMe() {
-        return instance.get(`auth/me`)
+        return instance.get<MeResponseType>(`auth/me`).then(res => res.data)
     },
     getAuthId(id: number) {
         return instance.get(`profile/` + id)
     },
     loginPost(authorizationModel: authorizationModelType) {
-        return instance.post(`auth/login`, {
+        return instance.post<LoginResponseType>(`auth/login`, {
                 email: authorizationModel.email,
                 password: authorizationModel.password,
                 rememberMe: authorizationModel.rememberMe,
                 captcha: authorizationModel.captcha
             }
-        )
+        ).then(res => res.data)
     },
     loginOut() {
         return instance.delete(`auth/login`)

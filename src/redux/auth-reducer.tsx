@@ -1,5 +1,5 @@
 import {ActionsTypes} from "./store";
-import {authAPI, authorizationModelType, securityAPI} from "../api/api";
+import {authAPI, authorizationModelType, ResultCodeForCaptchaEnum, ResultCodesEnum, securityAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 import {Dispatch} from "redux";
 import {ProfileType, ThunkType} from "../types/types";
@@ -83,23 +83,23 @@ export const getCaptchaUrlSuccess = (captchaUrl: string | null): getCaptchaUrlSu
     }) as const
 
 export const getAuthMe = () => async (dispatch: Dispatch) => {
-    let response = await authAPI.getAuthMe()
-    if (response.data.resultCode === 0) {
-        let {id, email, login} = response.data.data
+    let meData = await authAPI.getAuthMe()
+    if (meData.resultCode === ResultCodesEnum.Success) {
+        let {id, email, login} = meData.data
         dispatch(setAuthUserData(id, email, login, true))
     }
 }
 
 
 export const authorization = (authorizationModel: authorizationModelType): ThunkType => async (dispatch) => {
-    let response = await authAPI.loginPost(authorizationModel)
-    if (response.data.resultCode === 0) {
+    let data = await authAPI.loginPost(authorizationModel)
+    if (data.resultCode === ResultCodesEnum.Success) {
         dispatch(getAuthMe())
     } else {
-        if (response.data.resultCode === 10){
+        if (data.resultCode === ResultCodeForCaptchaEnum.CaptchaIsRequired){
             dispatch(getCaptchaUrl())
         }
-        let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"
+        let message = data.messages.length > 0 ? data.messages[0] : "Some error"
         dispatch(stopSubmit("login", {_error: message}))
     }
 }
