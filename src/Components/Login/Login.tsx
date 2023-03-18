@@ -39,7 +39,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormProps>
                 <Field component={Input} name={"rememberMe"} type={"checkbox"} className={s.input}/>
                 <p>Remember me</p>
             </div>
-            {captchaUrl && <img src={captchaUrl}/>}
+            {captchaUrl && <img src={captchaUrl} alt={'captchaUrl'}/>}
             {captchaUrl &&
                 createField<FormDateValuesTypeKeys>("Symbols from image", "captcha", [required], Input, {}, "", null) }
             {error && <div className={styles.formSummaryError}>
@@ -74,7 +74,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormProps>
             return <div className={s.loginPage}>
             <div className={s.loginSlider}>
             <div className={s.slider}>
-            <img src={imgForLogin} className={s.sliderImg}/>
+            <img src={imgForLogin} className={s.sliderImg} alt={'imgForLogin'}/>
             <h3>Connect with the world</h3>
             <p>It is a long established fact that a reader will be distracted by the readable content.</p>
             </div>

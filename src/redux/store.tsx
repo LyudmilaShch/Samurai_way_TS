@@ -6,15 +6,10 @@ import {
 } from "./profile-reducer";
 import {SendMessageCreator} from "./dialogs-reducer";
 import {NavbarReducer} from "./navbar-reducer";
-import {
-    setCurrentPage,
-    setUsers,
-    setTotalUsersCount,
-    toggleIsFetching,
-    toggleInFollowingInProgress, followSuccess, unfollowSuccess
-} from "./users-reducer";
-import {getCaptchaUrl, getCaptchaUrlSuccess, setAuthUserData, setAuthUserPhoto} from "./auth-reducer";
+import {actions} from "./users-reducer";
+import {getCaptchaUrlSuccess, setAuthUserData, setAuthUserPhoto} from "./auth-reducer";
 import {initializedSuccess} from "./app-reducer";
+
 type DialogType = {
     id: number,
     name: string,
@@ -69,17 +64,17 @@ export type ActionsTypes =
     ReturnType<typeof addPostCreator>
     | ReturnType<typeof deletePostCreator>
     | ReturnType<typeof SendMessageCreator>
-    | ReturnType<typeof followSuccess>
-    | ReturnType<typeof unfollowSuccess>
-    | ReturnType<typeof setUsers>
-    | ReturnType<typeof setCurrentPage>
-    | ReturnType<typeof setTotalUsersCount>
-    | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof actions.followSuccess>
+    | ReturnType<typeof actions.unfollowSuccess>
+    | ReturnType<typeof actions.setUsers>
+    | ReturnType<typeof actions.setCurrentPage>
+    | ReturnType<typeof actions.setTotalUsersCount>
+    | ReturnType<typeof actions.toggleIsFetching>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setAuthUserData>
     | ReturnType<typeof setAuthUserPhoto>
     | ReturnType<typeof getCaptchaUrlSuccess>
-    | ReturnType<typeof toggleInFollowingInProgress>
+    | ReturnType<typeof actions.toggleInFollowingInProgress>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof savePhotoSuccess>
     | ReturnType<typeof initializedSuccess>
@@ -180,7 +175,7 @@ export const store: StoreType = {
                 }
             ]
         }
-        },
+    },
     _callSubscriber() {
         console.log('State changed');
     },

@@ -24,6 +24,8 @@ declare global {
                 __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
         }
 }
+type PropertiesTypes<T> = T extends {[key: string]: infer U} ? U : never
+export type InferActionsTypes<T extends {[key: string]: (...args: any[]) => any}> = ReturnType<PropertiesTypes<T>>
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const store = legacy_createStore(rootReducer,  composeEnhancers(applyMiddleware(thunkMiddleware)))
