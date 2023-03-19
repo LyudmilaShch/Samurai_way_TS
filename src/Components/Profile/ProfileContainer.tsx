@@ -32,7 +32,7 @@ type MapDispatchPropsType = {
     getStatus: (userId: string) => void
     updateStatus: (status: string) => void
     savePhoto: (file: File) => void
-    saveProfile: (formData: ProfileType) => void
+    saveProfile: (formData: ProfileType) => Promise<any>
 }
 
 export type ProfilePropsType = MapStatePropsType & MapDispatchPropsType

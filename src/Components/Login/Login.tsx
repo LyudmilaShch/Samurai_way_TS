@@ -7,7 +7,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {createField, Input} from "../common/FormControls/FormsControls";
 import {required} from "../../utils/validators/validators";
 import {authorization, loginOut} from "../../redux/auth-reducer";
-import styles from '../common/FormControls/FormsControls.module.css'
+import styles from '../common/FormControls/FormsControls.module.scss'
 import s from './Login.module.scss'
 import imgForLogin from '../../assets/images/imgForLogin.jpg'
 
@@ -33,8 +33,8 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType, LoginFormProps>
                                                                                                       }) => {
     return (
         <form onSubmit={handleSubmit} className={s.loginForm}>
-            {createField<FormDateValuesTypeKeys>("Login", "email", [required], Input, {}, "", 'Email Address')}
-            {createField<FormDateValuesTypeKeys>("Password", "password", [required], Input, {type: "password"}, "", 'Your Password')}
+            {createField<FormDateValuesTypeKeys>("Login", "email", [required], Input, {className: s.field}, "", 'Email Address')}
+            {createField<FormDateValuesTypeKeys>("Password", "password", [required], Input, {type: "password", className: s.field}, "", 'Your Password')}
             <div className={s.rememberMe}>
                 <Field component={Input} name={"rememberMe"} type={"checkbox"} className={s.input}/>
                 <p>Remember me</p>

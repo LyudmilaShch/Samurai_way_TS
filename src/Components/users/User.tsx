@@ -16,8 +16,7 @@ export let User = ({
                        user,
                        follow,
                        unfollow,
-                       followingInProgress,
-                       ...props
+                       followingInProgress
                    }: UsersPropsType) => {
     return <div className={s.userBlock}>
         <div className={s.userInformationContainer}>

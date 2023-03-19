@@ -2,9 +2,9 @@ import React from 'react';
 import s from './MyPosts.module.scss';
 import {Post} from "./Post/Post";
 import {PostsPropsType} from "./MyPostsContainer";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
-import {Textarea} from "../../common/FormControls/FormsControls";
+import {createField, Textarea} from "../../common/FormControls/FormsControls";
 
 type PostDataType = {
     newPostText: string
@@ -42,16 +42,13 @@ export const MyPosts = React.memo((props: PostsPropsType) => {
 })
 
 const maxLength10 = maxLengthCreator(10)
-
+type NewPostFormValuesKeysTypes = Extract<keyof PostDataType, string>
 const AddPostForm: React.FC<InjectedFormProps<PostDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={Textarea}
-                       name={"newPostText"}
-                       placeholder={"Enter your post"}
-                       className={s.addPostArea}
-                       validate={[required, maxLength10]}/>
+                {createField<NewPostFormValuesKeysTypes>("Enter your post", "newPostText",
+                    [required, maxLength10], Textarea, {className: s.addPostArea}, "", null)}
                 <div className={s.buttonContainer}>
                     <button className={s.addPostButton}>Add post</button>
                 </div>

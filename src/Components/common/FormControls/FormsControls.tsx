@@ -1,5 +1,5 @@
 import React, {ComponentType} from 'react';
-import styles from './FormsControls.module.css'
+import styles from './FormsControls.module.scss'
 import {Field, WrappedFieldProps} from "redux-form";
 import s from "../../Login/Login.module.scss";
 import {FieldValidatorType} from "../../../utils/validators/validators";
@@ -44,7 +44,7 @@ export function createField<KeysType extends string>(placeholder: string | null,
         <div>
             <p>{pText}</p>
             <Field placeholder={placeholder} name={name} component={component} validate={validators}
-                   className={s.field} {...props}/>
+                   {...props}/>
             {text}
         </div>
     )

@@ -39,3 +39,15 @@ export type UsersType = {
     }
 }
 
+export type MessagesType = {
+    id: number,
+    name: string,
+    message: string,
+    avatar: string
+}
+
+export type SidebarType = {
+    id: number,
+    name: string,
+    avatar: string
+}

@@ -17,7 +17,7 @@ type ProfileInfoType = {
     updateStatus: (status: string) => void
     isOwner: boolean
     savePhoto: (file: File) => void
-    saveProfile: (formData: ProfileType) => void
+    saveProfile: (formData: ProfileType) => Promise<any>
 }
 
 let contactsValues = {
@@ -38,15 +38,13 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, 
         return <Preloader/>
     }
     const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            if (e.target.files.length) {
-                savePhoto(e.target.files[0])
-            }
+        if (e.target.files && e.target.files.length) {
+            savePhoto(e.target.files[0])
         }
     }
 
     const onSubmit = (formData: ProfileType) => {
-        // @ts-ignore
+        // todo: remove then
         saveProfile(formData).then(
             () => {
                 setEditMode(false)
@@ -115,11 +113,16 @@ export const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, 
     )
 }
 
+type ProfileDataType = {
+    profile: ProfileType,
+    isOwner: boolean,
+    goToEditMode: () => void
+}
 const ProfileData = ({
                          profile,
                          isOwner,
                          goToEditMode
-                     }: { profile: ProfileType, isOwner: boolean, goToEditMode: () => void }) => {
+                     }: ProfileDataType) => {
     return <div className={s.profileDescription}>
         <div className={s.block}>
             <h5>Personal information</h5>

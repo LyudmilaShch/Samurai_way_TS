@@ -5,7 +5,8 @@ import {Message} from "./Message/Message";
 import {DialogsPropsType} from "./DialogsContainer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../utils/validators/validators";
-import {Textarea} from "../common/FormControls/FormsControls";
+import {createField, Input, Textarea} from "../common/FormControls/FormsControls";
+import {FormDataType} from "../Login/Login";
 
 
 type MessageDataType = {
@@ -15,17 +16,17 @@ type MessageDataType = {
 export const Dialogs = (props: DialogsPropsType) => {
     let state = props.dialogsPage
     let dialogsElements =
-       state.dialogs.map(d => <DialogItem name={d.name} avatar={d.avatar} id={d.id} key={d.id}/>)
+        state.dialogs.map(d => <DialogItem name={d.name} avatar={d.avatar} id={d.id} key={d.id}/>)
 
     let messagesElements =
         state.messages.map(m => <Message avatar={m.avatar} name={m.name} message={m.message} key={m.id}/>)
 
 
     let addNewMessage = (values: MessageDataType) => {
-        props.sendMessage(values.newMessageText) ;
+        props.sendMessage(values.newMessageText);
     }
 
-        return (
+    return (
 
         <div className={s.dialogs}>
 
@@ -47,21 +48,13 @@ export const Dialogs = (props: DialogsPropsType) => {
 }
 
 const maxLength50 = maxLengthCreator(50)
-
-const AddMessageForm: React.FC<InjectedFormProps<MessageDataType>> = (props)  => {
+type NewMessageFormValuesKeysTypes = Extract<keyof MessageDataType, string>
+const AddMessageForm: React.FC<InjectedFormProps<MessageDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={s.sendMessageContainer}>
-                <Field component={Textarea}
-                       name={"newMessageText"}
-                       placeholder={"Enter your message"}
-                       className={s.sendMessageArea}
-                       validate={[required, maxLength50]}/>
-
-                    {/*<textarea className={s.sendMessageArea}*/}
-                    {/*          value={state.newMessageText}*/}
-                    {/*          onChange={messageOnChange}>*/}
-                    {/*</textarea>*/}
+                {createField<NewMessageFormValuesKeysTypes>("Enter your message", "newMessageText",
+                    [required, maxLength50], Textarea, {className: s.sendMessageArea}, "", null)}
                 <div className={s.buttonContainer}>
                     <button className={s.sendMessageButton}>Send</button>
                 </div>

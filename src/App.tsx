@@ -27,8 +27,8 @@ type MapDispatchPropsType = {
 export type AppPropsType = MapStatePropsType & MapDispatchPropsType
 
 
-class App extends React.Component<AppPropsType, any> {
-    catchAllUnhandledErrors = (promiseRejectionEvent: any) => {
+class App extends React.Component<AppPropsType> {
+    catchAllUnhandledErrors = () => {
         alert("Some error occured")
     }
     componentDidMount() {

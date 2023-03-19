@@ -9,7 +9,7 @@ type ProfilePropsType = {
     updateStatus: (status: string) => void
     isOwner: boolean
     savePhoto: (file: File) => void
-    saveProfile: (formData: ProfileType) => void
+    saveProfile: (formData: ProfileType) => Promise<any>
 
 }
 
